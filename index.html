@@ -7,7 +7,7 @@
   <title>혼인서약식 초대장</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Song+Myung&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Song+Myung&family=Nanum+Brush+Script&family=East+Sea+Dokdo&display=swap" rel="stylesheet" />
 
   <style>
     /* --- Layout: mobile-first, fixed-width card even on desktop --- */
@@ -23,150 +23,77 @@
       --success: #2e7d32;
     }
 
-    html, body {
-      height: 100%;
-    }
+    html, body { height: 100%; }
 
     body {
       font-family: 'Nanum Gothic', sans-serif;
-      margin: 0;
-      padding: 0;
-      background: var(--outer-bg);
-      color: var(--text);
-      display: flex;
-      justify-content: center;
+      margin: 0; padding: 0;
+      background: var(--outer-bg); color: var(--text);
+      display: flex; justify-content: center;
     }
 
     .container {
-      width: 100%;
-      max-width: var(--card-max-width);
-      min-height: 100vh;
-      background: var(--bg);
+      width: 100%; max-width: var(--card-max-width);
+      min-height: 100vh; background: var(--bg);
       box-shadow: 0 0 12px rgba(0,0,0,0.08);
     }
 
-    /* --- Cover --- */
+    /* --- Cover (no overlay text) --- */
     .cover {
-      position: relative;
-      background: url('https://i.imgur.com/hrLOH6c.jpeg') center/cover no-repeat;
+      background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
       height: 45vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
-      overflow: hidden;
-    }
-    .cover::before {
-      /* readability overlay */
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
-    }
-    .cover-title {
-      position: relative;
-      font-weight: 700;
-      font-size: 1.4rem;
-      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
     }
 
     /* --- Info Block --- */
-    .info {
-      padding: 20px 18px 10px;
-      text-align: center;
-      line-height: 1.55;
-    }
+    .info { padding: 20px 18px 10px; text-align: center; line-height: 1.55; }
 
-    /* Date (stacked vertically) */
+    /* Date (stacked vertically) — new hand-written font */
     .wedding-date {
-      font-family: 'Nanum Brush Script', cursive;
-      font-size: 2.6rem; /* large but mobile-friendly */
-      font-weight: 700;
-      line-height: 1.15;
-      margin: 6px auto 14px;
+      font-family: 'East Sea Dokdo', cursive; /* changed */
+      font-size: 3rem; /* large but mobile-friendly */
+      font-weight: 400;
+      line-height: 1.05;
+      margin: 6px auto 10px;
       color: var(--text);
-      letter-spacing: 1px;
+      letter-spacing: 0.5px;
     }
 
     /* Names in Song Myung */
-    .names {
-      font-family: 'Song Myung', serif;
-      font-size: 1.8rem;
+    .names { font-family: 'Song Myung', serif; font-size: 1.9rem; margin: 0 0 8px; }
+
+    /* Invite line under names, same font as date */
+    .invite-line {
+      font-family: 'East Sea Dokdo', cursive; /* same as date */
+      font-size: 1.6rem;
       margin: 0 0 14px;
+      color: var(--text);
     }
 
-    .greeting {
-      font-size: 0.98rem;
-      margin: 0 auto 14px;
-      color: var(--muted);
-    }
-
-    .details {
-      font-size: 0.98rem;
-      margin: 0 auto 8px  ;
-    }
+    .greeting { font-size: 0.98rem; margin: 0 auto 14px; color: var(--muted); }
+    .details { font-size: 0.98rem; margin: 0 auto 8px; }
 
     /* --- Form --- */
-    form {
-      padding: 16px 18px 24px;
-      text-align: center;
-    }
-    .field {
-      width: 100%;
-      max-width: 320px;
-      margin: 8px auto;
-      text-align: left;
-    }
-    .label {
-      display: block;
-      font-size: 0.92rem;
-      margin: 0 0 6px 2px;
-      color: #444;
-    }
+    form { padding: 16px 18px 24px; text-align: center; }
+    .field { width: 100%; max-width: 320px; margin: 8px auto; text-align: left; }
+    .label { display: block; font-size: 0.92rem; margin: 0 0 6px 2px; color: #444; }
     input, select, button {
-      width: 100%;
-      padding: 14px 13px;
-      border-radius: 10px;
-      border: 1px solid var(--border);
-      font-size: 1rem;
-      box-sizing: border-box;
+      width: 100%; padding: 14px 13px; border-radius: 10px; border: 1px solid var(--border);
+      font-size: 1rem; box-sizing: border-box;
     }
-    input:focus, select:focus, button:focus {
-      outline: 2px solid #9ec5fe;
-      outline-offset: 1px;
-    }
-    button {
-      margin-top: 6px;
-      background: var(--btn);
-      color: #fff;
-      border: none;
-      cursor: pointer;
-      transition: background 0.15s ease-in-out;
-    }
+    input:focus, select:focus, button:focus { outline: 2px solid #9ec5fe; outline-offset: 1px; }
+    button { margin-top: 6px; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
     button:hover { background: var(--btn-hover); }
 
-    .success-message {
-      display: none;
-      text-align: center;
-      color: var(--success);
-      font-weight: 700;
-      margin: 0 18px 24px;
-    }
+    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin: 0 18px 24px; }
     .success-message.show { display: block; }
 
-    /* Small helpers */
-    .sr-only {
-      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
-    }
+    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Cover -->
-    <div class="cover">
-      <div class="cover-title">혼인서약식에 초대합니다</div>
-    </div>
+    <!-- Cover (no text on image) -->
+    <div class="cover"></div>
 
     <!-- Info -->
     <div class="info">
@@ -179,6 +106,7 @@
 
       <!-- Names -->
       <h2 class="names">이현섭 & 김수민</h2>
+      <p class="invite-line">혼인서약식에 초대합니다</p>
 
       <!-- Greeting -->
       <p class="greeting">
@@ -226,13 +154,9 @@
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
 
-      // basic client-side validation
       const name = form.name.value.trim();
       const attendance = form.attendance.value;
-      if (!name || !attendance) {
-        alert('이름과 참석 여부를 입력해주세요.');
-        return;
-      }
+      if (!name || !attendance) { alert('이름과 참석 여부를 입력해주세요.'); return; }
 
       const payload = { name, attendance };
 
@@ -242,12 +166,10 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify(payload)
         });
-
         if (!res.ok) throw new Error('응답 오류');
 
         successMessage.classList.add('show');
         form.reset();
-        // scroll success into view on mobile
         successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
       } catch (err) {
         alert('제출에 실패했습니다. 잠시 후 다시 시도해주세요.');
