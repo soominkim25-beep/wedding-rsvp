@@ -3,29 +3,37 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
-  <meta name="theme-color" content="#ffffff" />
+  <meta name="theme-color" content="#fdfbf7" />
   <title>혼인서약식 초대장</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
+  <!-- Cafe24 Simplehae (noonnu CDN) -->
+  <style>
+    @font-face {
+      font-family: 'Cafe24Simplehae';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Simplehae.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
 
   <style>
     :root {
       --card-max-width: 420px;
-      --text: #333;
-      --muted: #555;
-      --border: #ddd;
-      --bg: #ffffff;
-      --outer-bg: #f5f5f5;
-      --btn: #333;
-      --btn-hover: #555;
+      --text: #4b3621;       /* 딥 브라운 */
+      --muted: #6a5240;      /* 브라운 톤 보조 */
+      --border: #e6dfd6;     /* 연한 브라운 테두리 */
+      --bg: #ffffff;         /* 카드 내부 흰색 */
+      --outer-bg: #fdfbf7;   /* 아이보리 */
+      --btn: #4b3621;
+      --btn-hover: #3d2d1a;
       --success: #2e7d32;
     }
 
     html, body { height: 100%; }
 
     body {
-      font-family: 'Nanum Gothic', sans-serif;
+      font-family: 'Cafe24Simplehae', sans-serif;
       margin: 0; padding: 0;
       background: var(--outer-bg); color: var(--text);
       display: flex; justify-content: center;
@@ -34,71 +42,50 @@
     .container {
       width: 100%; max-width: var(--card-max-width);
       min-height: 100vh; background: var(--bg);
-      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+      padding: 1.5rem;              /* 잡지 같은 바깥 여백 */
+      box-sizing: border-box;
     }
 
-    /* --- Cover --- */
+    /* --- Cover (magazine-style with margins) --- */
     .cover {
       background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
-      height: 50vh;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      text-align: center;
-      color: #fff;
+      height: 45vh;
+      margin: 1rem 0;              /* 위아래 여백으로 표지 느낌 */
+      border-radius: 10px;          /* 사진 모서리 살짝 둥글게 */
       position: relative;
+      display: flex; align-items: center; justify-content: center; text-align: center;
     }
+    /* 필요한 경우 가독성을 위해 옅은 오버레이 (아주 약하게) */
     .cover::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.35);
+      content: ""; position: absolute; inset: 0; border-radius: 10px;
+      background: rgba(0,0,0,0.20);
     }
-    .cover-text {
-      position: relative;
-      z-index: 1;
-    }
-    .cover-text .names {
-      font-size: 1.6rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-    .cover-text .invite-line {
-      font-size: 1.1rem;
-      font-weight: 400;
-    }
+    .cover-text { position: relative; z-index: 1; color: #fff; }
+    .cover-text .names { font-size: 1.6rem; margin-bottom: 0.35rem; letter-spacing: 1px; }
+    .cover-text .invite-line { font-size: 1.05rem; opacity: 0.95; }
 
     /* --- Info --- */
-    .info {
-      padding: 2rem 1rem;
-      text-align: center;
-    }
+    .info { padding: 1.2rem 0 0.6rem; text-align: center; }
     .details {
-      font-size: 1rem;
-      margin-bottom: 0.8rem;
-      color: var(--muted);
-      line-height: 1.6;
+      font-size: 1rem; color: var(--muted); line-height: 1.6; margin: 0 0 0.8rem;
     }
-    .greeting {
-      font-size: 0.95rem;
-      color: var(--muted);
-      line-height: 1.6;
-      margin-top: 1rem;
-    }
+    .greeting { font-size: 0.98rem; color: var(--muted); line-height: 1.65; margin-top: 1rem; }
 
     /* --- Form --- */
-    form { padding: 16px 18px 24px; text-align: center; }
-    .field { width: 100%; max-width: 320px; margin: 8px auto; text-align: left; }
-    .label { display: block; font-size: 0.92rem; margin: 0 0 6px 2px; color: #444; }
+    form { padding: 16px 0 24px; text-align: center; }
+    .field { width: 100%; max-width: 320px; margin: 10px auto; text-align: left; }
+    .label { display: block; font-size: 0.95rem; margin: 0 0 6px 2px; color: var(--text); opacity: 0.85; }
     input, select, button {
-      width: 100%; padding: 14px 13px; border-radius: 10px; border: 1px solid var(--border);
-      font-size: 1rem; box-sizing: border-box;
+      width: 100%; padding: 14px 13px; border-radius: 12px; border: 1px solid var(--border);
+      font-size: 1rem; box-sizing: border-box; color: var(--text);
+      background: #fff;
     }
-    input:focus, select:focus, button:focus { outline: 2px solid #9ec5fe; outline-offset: 1px; }
+    input:focus, select:focus, button:focus { outline: 2px solid #d9c9b8; outline-offset: 1px; }
     button { margin-top: 6px; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
     button:hover { background: var(--btn-hover); }
 
-    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin: 0 18px 24px; }
+    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin: 0 0 24px; }
     .success-message.show { display: block; }
 
     .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
@@ -106,7 +93,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- Cover -->
+    <!-- Cover (magazine style) -->
     <div class="cover">
       <div class="cover-text">
         <div class="names">이현섭 & 김수민</div>
