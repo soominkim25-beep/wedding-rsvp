@@ -12,99 +12,121 @@
   <style>
     :root {
       --card-max-width: 420px;
-      --text: #4b3621;      /* 딥 브라운 */
-      --muted: #6a5240;     /* 보조 브라운 */
-      --border: #e6dfd6;    /* 연한 브라운 테두리 */
-      --bg: #ffffff;        /* 카드 내부 */
-      --outer-bg: #fdfbf7;  /* 아이보리 */
-      --btn: #4b3621; --btn-hover: #3d2d1a; --success: #2e7d32;
+      --text: #4b3621;
+      --muted: #6a5240;
+      --border: #e6dfd6;
+      --bg: #ffffff;
+      --outer-bg: #fdfbf7;
+      --btn: #4b3621;
+      --btn-hover: #3d2d1a;
+      --success: #2e7d32;
     }
 
-    html, body { height: 100%; }
-    body {
+    html, body {
+      height: 100%;
+      margin: 0;
+      padding: 0;
       font-family: 'Noto Serif KR', serif;
-      font-synthesis: none;
-      margin: 0; padding: 0; background: var(--outer-bg); color: var(--text);
-      display: flex; justify-content: center;
+      background: var(--outer-bg);
+      color: var(--text);
+      scroll-behavior: smooth;
     }
 
-    .container {
-      width: 100%; max-width: var(--card-max-width); min-height: 100vh;
-      background: var(--bg); box-shadow: 0 6px 22px rgba(0,0,0,0.06);
-      padding: 1.5rem; box-sizing: border-box;
+    .section {
+      min-height: 100vh;
+      max-width: var(--card-max-width);
+      margin: 0 auto;
+      background: var(--bg);
+      box-shadow: 0 6px 22px rgba(0,0,0,0.06);
+      padding: 2rem 1.5rem;
+      box-sizing: border-box;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
     }
 
-    /* --- 상단: 잡지 표지 느낌 (날짜 + Save the Date) --- */
-    .top-header { text-align: center; margin: 0.8rem 0 0.9rem; }
+    .top-header { text-align: center; margin-bottom: 1.2rem; }
     .top-header .date-line {
-      font-size: 1.2rem; letter-spacing: 2px;
-      margin: 0; color: var(--muted); line-height: 1.2;
+      font-size: 1.2rem;
+      letter-spacing: 2px;
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.2;
     }
     .top-header .sub {
-      font-size: 0.95rem; color: var(--muted); margin: 0.15rem 0 0;
+      font-size: 0.95rem;
+      color: var(--muted);
+      margin-top: 0.2rem;
     }
 
-    /* --- 표지 사진 (여백 + 라운드) --- */
-    .cover { background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
-      height: 47vh; margin: 1rem 0 1.2rem; border-radius: 10px; }
+    .cover {
+      background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
+      width: 100%;
+      height: 47vh;
+      margin: 1rem 0 1.5rem;
+      border-radius: 10px;
+    }
 
-    /* --- 사진 아래 타이틀 --- */
-    .title-block { text-align: center; margin: 0.4rem 0 0.8rem; }
-    .title-block .names { font-size: 1.55rem; margin: 0 0 0.25rem; }
-    .title-block .date, .title-block .venue { font-size: 1.05rem; color: var(--muted); margin: 0; }
+    .title-block { text-align: center; margin-top: 0.6rem; }
+    .title-block .names { font-size: 1.55rem; margin-bottom: 0.3rem; }
+    .title-block .date, .title-block .venue { font-size: 1.05rem; color: var(--muted); margin: 0.2rem 0; }
 
-    /* --- 인사말 --- */
-    .greeting { text-align: center; font-size: 0.98rem; color: var(--muted); line-height: 1.65; margin: 0.8rem 0 1.2rem; }
+    /* Section 2 */
+    .greeting { text-align: center; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 2rem; }
 
-    /* --- RSVP (이름 & 참석여부) --- */
-    form { padding: 20px 0 28px; text-align: center; margin-top: 1.1rem; }
-    .field { width: 100%; max-width: 320px; margin: 12px auto; text-align: left; }
-    .label { display: block; font-size: 0.95rem; margin: 0 0 6px 2px; color: var(--text); opacity: 0.9; }
+    form { width: 100%; max-width: 340px; text-align: center; }
+    .field { margin-bottom: 1.2rem; text-align: left; }
+    .label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); }
     input, select, button {
-      width: 100%; padding: 14px 13px; border-radius: 12px; border: 1px solid var(--border);
-      font-size: 1rem; box-sizing: border-box; color: var(--text); background: #fff;
+      width: 100%;
+      padding: 14px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      box-sizing: border-box;
+      color: var(--text);
+      background: #fff;
     }
-    input:-webkit-autofill, select:-webkit-autofill {
-      -webkit-text-fill-color: var(--text);
-      box-shadow: 0 0 0px 1000px #fff inset;
-      transition: background-color 5000s ease-in-out 0s;
-    }
-
     input:focus, select:focus, button:focus { outline: 2px solid #d9c9b8; outline-offset: 1px; }
-    button { margin-top: 6px; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
+    button { background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
     button:hover { background: var(--btn-hover); }
 
-    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin: 0 0 24px; }
+    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin-top: 1rem; }
     .success-message.show { display: block; }
+
+    /* Fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
-  <div class="container">
-    <!-- 상단: 날짜 + Save the Date (간격 타이트) -->
+
+  <!-- Section 1: Intro -->
+  <section class="section" id="intro">
     <div class="top-header">
       <div class="date-line">2025.10.04</div>
       <div class="sub">Save the Date</div>
     </div>
 
-    <!-- 표지 사진 -->
     <div class="cover" aria-label="커버 이미지"></div>
 
-    <!-- 사진 아래: 텍스트 3줄 -->
     <div class="title-block">
       <div class="names">이현섭 & 김수민</div>
       <div class="date">2025.10.04</div>
       <div class="venue">Madang Restaurant 2F</div>
     </div>
+  </section>
 
-    <!-- 인사말 -->
-    <p class="greeting">
+  <!-- Section 2: Greeting & RSVP -->
+  <section class="section" id="rsvp">
+    <p class="greeting fade-in">
       서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
       하나님 앞에서 함께 서약하려 합니다.<br />
       귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
     </p>
 
-    <!-- RSVP: 이름 & 참석여부 -->
-    <form id="rsvpForm" novalidate>
+    <form id="rsvpForm" novalidate class="fade-in">
       <div class="field">
         <label class="label" for="name">이름</label>
         <input id="name" name="name" type="text" placeholder="이름" required autocomplete="name" />
@@ -117,15 +139,14 @@
           <option value="불참">불참합니다</option>
         </select>
       </div>
-      <div class="field">
-        <button type="submit" aria-label="RSVP 제출하기">제출하기</button>
-      </div>
+      <button type="submit" aria-label="RSVP 제출하기">제출하기</button>
     </form>
 
     <div class="success-message" role="status" aria-live="polite">제출해주셔서 감사합니다!</div>
-  </div>
+  </section>
 
   <script>
+    // RSVP submission
     const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec";
     const form = document.getElementById('rsvpForm');
     const successMessage = document.querySelector('.success-message');
@@ -150,6 +171,17 @@
         console.error(err);
       }
     });
+
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
