@@ -6,12 +6,13 @@
   <meta name="theme-color" content="#fdfbf7" />
   <title>혼인서약식 초대장</title>
 
-  <!-- Cafe24 Simplehae (noonnu CDN) -->
+  <!-- Preload Cafe24 Simplehae/webfont -->
+  <link rel="preload" as="font" href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Simplehae.woff" type="font/woff" crossorigin>
   <style>
     @font-face {
       font-family: 'Cafe24Simplehae';
       src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Cafe24Simplehae.woff') format('woff');
-      font-weight: normal;
+      font-weight: 400;
       font-style: normal;
       font-display: swap;
     }
@@ -28,12 +29,13 @@
       --btn: #4b3621;
       --btn-hover: #3d2d1a;
       --success: #2e7d32;
+      --icon: #4b3621;       /* 아이콘 컬러 */
     }
 
     html, body { height: 100%; }
 
     body {
-      font-family: 'Cafe24Simplehae', sans-serif;
+      font-family: 'Cafe24Simplehae', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
       margin: 0; padding: 0;
       background: var(--outer-bg); color: var(--text);
       display: flex; justify-content: center;
@@ -47,39 +49,55 @@
       box-sizing: border-box;
     }
 
+    /* --- Top header (도안 상단: 날짜 + 부제) --- */
+    .top-header { text-align: center; margin: 1.1rem 0 1.2rem; }
+    .top-header .date-line {
+      font-size: 1.2rem;        /* 상단은 은은하지만 존재감 있게 */
+      font-weight: 600;
+      letter-spacing: 3px;       /* 잡지 표지처럼 간격 */
+      word-spacing: 6px;         /* 파이프와 숫자 간 여백 */
+      color: var(--muted);
+      margin: 0 0 0.5rem;        /* 아래 여백 확대 */
+      line-height: 1.8;          /* 행간 여유 */
+    }
+    .top-header .sub { font-size: 0.95rem; color: var(--muted); opacity: 0.9; }
+
     /* --- Cover (magazine-style with margins) --- */
     .cover {
       background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
-      height: 45vh;
-      margin: 1rem 0;              /* 위아래 여백으로 표지 느낌 */
-      border-radius: 10px;          /* 사진 모서리 살짝 둥글게 */
-      position: relative;
-      display: flex; align-items: center; justify-content: center; text-align: center;
+      height: 47vh;              /* 약간 키워서 표지감 강조 */
+      margin: 1.2rem 0 1.4rem;   /* 위아래 여백 확대 */
+      border-radius: 10px;
     }
-    /* 필요한 경우 가독성을 위해 옅은 오버레이 (아주 약하게) */
-    .cover::before {
-      content: ""; position: absolute; inset: 0; border-radius: 10px;
-      background: rgba(0,0,0,0.20);
-    }
-    .cover-text { position: relative; z-index: 1; color: #fff; }
-    .cover-text .names { font-size: 1.6rem; margin-bottom: 0.35rem; letter-spacing: 1px; }
-    .cover-text .invite-line { font-size: 1.05rem; opacity: 0.95; }
 
-    /* --- Info --- */
-    .info { padding: 1.2rem 0 0.6rem; text-align: center; }
-    .details {
-      font-size: 1rem; color: var(--muted); line-height: 1.6; margin: 0 0 0.8rem;
+    /* --- Title block under image (이름 크게 + 행사 문구) --- */
+    .title-block { text-align: center; margin: 0.6rem 0 1.2rem; }
+    .title-block .names {
+      font-size: 1.55rem;      /* 개선안 #2: 아래는 더 굵고 크게 */
+      font-weight: 700;
+      letter-spacing: 0.5px;
+      margin: 0 0 0.25rem;
+      color: var(--text);
     }
-    .greeting { font-size: 0.98rem; color: var(--muted); line-height: 1.65; margin-top: 1rem; }
+    .title-block .invite-line { font-size: 1.05rem; color: var(--text); }
 
-    /* --- Form --- */
-    form { padding: 16px 0 24px; text-align: center; }
+    /* --- Details with icons (브라운 컬러 아이콘) --- */
+    .details { text-align: center; margin: 0.8rem 0 0.6rem; }
+    .meta { display: inline-flex; align-items: center; gap: 8px; color: var(--muted); font-size: 1rem; }
+    .meta + .meta { margin-top: 6px; }
+    .icon { width: 18px; height: 18px; display: inline-block; vertical-align: -3px; }
+    .icon svg { width: 18px; height: 18px; fill: var(--icon); stroke: var(--icon); }
+
+    /* --- Greeting text --- */
+    .greeting { text-align: center; font-size: 0.98rem; color: var(--muted); line-height: 1.65; margin: 1rem 0 0.8rem; }
+
+    /* --- Form (이름 & 참석여부만) --- */
+    form { padding: 12px 0 24px; text-align: center; }
     .field { width: 100%; max-width: 320px; margin: 10px auto; text-align: left; }
     .label { display: block; font-size: 0.95rem; margin: 0 0 6px 2px; color: var(--text); opacity: 0.85; }
     input, select, button {
       width: 100%; padding: 14px 13px; border-radius: 12px; border: 1px solid var(--border);
-      font-size: 1rem; box-sizing: border-box; color: var(--text);
-      background: #fff;
+      font-size: 1rem; box-sizing: border-box; color: var(--text); background: #fff;
     }
     input:focus, select:focus, button:focus { outline: 2px solid #d9c9b8; outline-offset: 1px; }
     button { margin-top: 6px; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
@@ -87,34 +105,51 @@
 
     .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin: 0 0 24px; }
     .success-message.show { display: block; }
-
-    .sr-only { position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0; }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- Cover (magazine style) -->
-    <div class="cover">
-      <div class="cover-text">
-        <div class="names">이현섭 & 김수민</div>
-        <div class="invite-line">혼인서약식에 초대합니다</div>
+    <!-- 도안 상단: 날짜 + 부제 (작고 은은하게) -->
+    <div class="top-header">
+      <div class="date-line">2025 | 10 | 04</div>
+      <div class="sub">Save the Date</div>
+    </div>
+
+    <!-- 표지 사진 (여백 있는 잡지 스타일) -->
+    <div class="cover"></div>
+
+    <!-- 사진 아래: 이름 크게 + 행사 문구 -->
+    <div class="title-block">
+      <h1 class="names">이현섭 & 김수민</h1>
+      <div class="invite-line">혼인서약식에 초대합니다</div>
+    </div>
+
+    <!-- 날짜/장소: 브라운 아이콘 + 텍스트 -->
+    <div class="details">
+      <div class="meta">
+        <span class="icon" aria-hidden="true">
+          <!-- calendar icon -->
+          <svg viewBox="0 0 24 24" role="img"><path d="M7 2h2v2h6V2h2v2h3a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H3a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h4V2Zm14 8H3v10h18V10Z"/></svg>
+        </span>
+        <span>2025. 10. 04 SAT 5:00 PM</span>
+      </div>
+      <div class="meta">
+        <span class="icon" aria-hidden="true">
+          <!-- pin icon -->
+          <svg viewBox="0 0 24 24" role="img"><path d="M12 2a7 7 0 0 1 7 7c0 5.25-7 13-7 13S5 14.25 5 9a7 7 0 0 1 7-7Zm0 9.5a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5Z"/></svg>
+        </span>
+        <span>Madang Restaurant</span>
       </div>
     </div>
 
-    <!-- Info -->
-    <div class="info">
-      <p class="details">
-        🗓 2025. 10. 04 SAT 5:00 PM<br />
-        📍 Madang Restaurant
-      </p>
-      <p class="greeting">
-        서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
-        하나님 앞에서 함께 서약하려 합니다.<br />
-        귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
-      </p>
-    </div>
+    <!-- 인사말 -->
+    <p class="greeting">
+      서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
+      하나님 앞에서 함께 서약하려 합니다.<br />
+      귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
+    </p>
 
-    <!-- RSVP Form -->
+    <!-- RSVP Form: 이름 & 참석여부 -->
     <form id="rsvpForm" novalidate>
       <div class="field">
         <label class="label" for="name">이름</label>
