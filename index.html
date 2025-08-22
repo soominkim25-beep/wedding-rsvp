@@ -1,165 +1,259 @@
 <!DOCTYPE html>
 <html lang="ko">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
+  <meta name="theme-color" content="#ffffff" />
   <title>혼인서약식 초대장</title>
 
-  <!-- 폰트 불러오기 -->
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Song+Myung&family=Nanum+Brush+Script&display=swap" rel="stylesheet">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Song+Myung&family=Nanum+Brush+Script&display=swap" rel="stylesheet" />
 
   <style>
+    /* --- Layout: mobile-first, fixed-width card even on desktop --- */
+    :root {
+      --card-max-width: 420px;
+      --text: #333;
+      --muted: #555;
+      --border: #ddd;
+      --bg: #ffffff;
+      --outer-bg: #f5f5f5;
+      --btn: #333;
+      --btn-hover: #555;
+      --success: #2e7d32;
+    }
+
+    html, body {
+      height: 100%;
+    }
+
     body {
       font-family: 'Nanum Gothic', sans-serif;
       margin: 0;
       padding: 0;
-      background: #fdfdfd;
-      color: #333;
+      background: var(--outer-bg);
+      color: var(--text);
+      display: flex;
+      justify-content: center;
     }
+
+    .container {
+      width: 100%;
+      max-width: var(--card-max-width);
+      min-height: 100vh;
+      background: var(--bg);
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    /* --- Cover --- */
     .cover {
+      position: relative;
       background: url('https://i.imgur.com/hrLOH6c.jpeg') center/cover no-repeat;
-      height: 60vh;
+      height: 45vh;
       display: flex;
       align-items: center;
       justify-content: center;
       text-align: center;
-      color: white;
-      font-size: 1.8rem;
-      font-weight: bold;
-      text-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+      color: #fff;
+      overflow: hidden;
     }
+    .cover::before {
+      /* readability overlay */
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,0.25), rgba(0,0,0,0.35));
+    }
+    .cover-title {
+      position: relative;
+      font-weight: 700;
+      font-size: 1.4rem;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.4);
+    }
+
+    /* --- Info Block --- */
     .info {
-      padding: 2rem;
+      padding: 20px 18px 10px;
       text-align: center;
-      line-height: 1.6;
+      line-height: 1.55;
     }
-    /* 날짜 세로 크게 */
+
+    /* Date (stacked vertically) */
     .wedding-date {
       font-family: 'Nanum Brush Script', cursive;
-      font-size: 3rem;
-      font-weight: bold;
-      line-height: 1.1;
-      margin-bottom: 1.5rem;
-      color: #333;
+      font-size: 2.6rem; /* large but mobile-friendly */
+      font-weight: 700;
+      line-height: 1.15;
+      margin: 6px auto 14px;
+      color: var(--text);
+      letter-spacing: 1px;
     }
-    /* 이름 Song Myung */
-    .info h2 {
+
+    /* Names in Song Myung */
+    .names {
       font-family: 'Song Myung', serif;
-      font-size: 2rem;
-      margin-bottom: 1.5rem;
+      font-size: 1.8rem;
+      margin: 0 0 14px;
     }
+
     .greeting {
-      font-size: 1rem;
-      line-height: 1.6;
-      margin-bottom: 1.5rem;
-      color: #555;
+      font-size: 0.98rem;
+      margin: 0 auto 14px;
+      color: var(--muted);
     }
+
     .details {
-      font-size: 1rem;
-      line-height: 1.6;
+      font-size: 0.98rem;
+      margin: 0 auto 8px  ;
     }
+
+    /* --- Form --- */
     form {
-      padding: 2rem;
+      padding: 16px 18px 24px;
       text-align: center;
     }
+    .field {
+      width: 100%;
+      max-width: 320px;
+      margin: 8px auto;
+      text-align: left;
+    }
+    .label {
+      display: block;
+      font-size: 0.92rem;
+      margin: 0 0 6px 2px;
+      color: #444;
+    }
     input, select, button {
-      width: 90%;
-      max-width: 300px;
-      margin: 0.5rem auto;
-      padding: 0.8rem;
-      border-radius: 8px;
-      border: 1px solid #ccc;
+      width: 100%;
+      padding: 14px 13px;
+      border-radius: 10px;
+      border: 1px solid var(--border);
       font-size: 1rem;
+      box-sizing: border-box;
+    }
+    input:focus, select:focus, button:focus {
+      outline: 2px solid #9ec5fe;
+      outline-offset: 1px;
     }
     button {
-      background: #333;
-      color: white;
+      margin-top: 6px;
+      background: var(--btn);
+      color: #fff;
       border: none;
       cursor: pointer;
+      transition: background 0.15s ease-in-out;
     }
-    button:hover {
-      background: #555;
-    }
+    button:hover { background: var(--btn-hover); }
+
     .success-message {
       display: none;
       text-align: center;
-      color: green;
-      font-weight: bold;
-      margin-top: 1rem;
+      color: var(--success);
+      font-weight: 700;
+      margin: 0 18px 24px;
+    }
+    .success-message.show { display: block; }
+
+    /* Small helpers */
+    .sr-only {
+      position: absolute; width: 1px; height: 1px; padding: 0; margin: -1px; overflow: hidden; clip: rect(0,0,0,0); border: 0;
     }
   </style>
 </head>
 <body>
-
-  <!-- Cover -->
-  <div class="cover">
-    <div>혼인서약식에 초대합니다</div>
-  </div>
-
-  <!-- Info -->
-  <div class="info">
-    <!-- 날짜 -->
-    <div class="wedding-date">
-      <div>10</div>
-      <div>04</div>
-      <div>2025</div>
+  <div class="container">
+    <!-- Cover -->
+    <div class="cover">
+      <div class="cover-title">혼인서약식에 초대합니다</div>
     </div>
 
-    <!-- 이름 -->
-    <h2>이현섭 & 김수민</h2>
+    <!-- Info -->
+    <div class="info">
+      <!-- Stacked Date -->
+      <div class="wedding-date" aria-label="날짜 2025년 10월 4일">
+        <div>10</div>
+        <div>04</div>
+        <div>2025</div>
+      </div>
 
-    <!-- 인사말 -->
-    <p class="greeting">
-      서로를 향한 믿음으로 하나 되는 저희 두 사람이<br>
-      하나님 앞에서 함께 서약하려 합니다.<br>
-      귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
-    </p>
+      <!-- Names -->
+      <h2 class="names">이현섭 & 김수민</h2>
 
-    <!-- 일정 & 장소 -->
-    <p class="details">
-      🗓️ 2025년 10월 4일 토요일 오후 5시<br>
-      📍 Madang Restaurant (뉴저지)
-    </p>
+      <!-- Greeting -->
+      <p class="greeting">
+        서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
+        하나님 앞에서 함께 서약하려 합니다.<br />
+        귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
+      </p>
+
+      <!-- Details -->
+      <p class="details">
+        🗓️ 2025년 10월 4일 토요일 오후 5시<br />
+        📍 Madang Restaurant (뉴저지)
+      </p>
+    </div>
+
+    <!-- RSVP Form -->
+    <form id="rsvpForm" novalidate>
+      <div class="field">
+        <label class="label" for="name">이름</label>
+        <input id="name" name="name" type="text" placeholder="이름" required autocomplete="name" />
+      </div>
+      <div class="field">
+        <label class="label" for="attendance">참석 여부</label>
+        <select id="attendance" name="attendance" required>
+          <option value="" selected>참석 여부 선택</option>
+          <option value="참석">참석합니다</option>
+          <option value="불참">불참합니다</option>
+        </select>
+      </div>
+      <div class="field">
+        <button type="submit" aria-label="RSVP 제출하기">제출하기</button>
+      </div>
+    </form>
+
+    <div class="success-message" role="status" aria-live="polite">제출해주셔서 감사합니다!</div>
   </div>
 
-  <!-- RSVP Form -->
-  <form id="rsvpForm">
-    <input type="text" name="name" placeholder="이름" required>
-    <select name="attendance" required>
-      <option value="">참석 여부 선택</option>
-      <option value="참석">참석합니다</option>
-      <option value="불참">불참합니다</option>
-    </select>
-    <button type="submit">제출하기</button>
-  </form>
-  <div class="success-message">제출해주셔서 감사합니다!</div>
-
   <script>
-    const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec"; 
-    const form = document.getElementById("rsvpForm");
-    const successMessage = document.querySelector(".success-message");
+    // Google Apps Script Web App URL
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec";
 
-    form.addEventListener("submit", e => {
+    const form = document.getElementById('rsvpForm');
+    const successMessage = document.querySelector('.success-message');
+
+    form.addEventListener('submit', async (e) => {
       e.preventDefault();
-      const formData = {
-        name: form.name.value,
-        attendance: form.attendance.value
-      };
-      fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(formData)
-      })
-      .then(response => {
-        if (response.ok) {
-          successMessage.style.display = "block";
-          form.reset();
-        } else {
-          alert("제출에 실패했습니다. 다시 시도해주세요.");
-        }
-      })
-      .catch(error => alert("에러 발생: " + error.message));
+
+      // basic client-side validation
+      const name = form.name.value.trim();
+      const attendance = form.attendance.value;
+      if (!name || !attendance) {
+        alert('이름과 참석 여부를 입력해주세요.');
+        return;
+      }
+
+      const payload = { name, attendance };
+
+      try {
+        const res = await fetch(scriptURL, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+
+        if (!res.ok) throw new Error('응답 오류');
+
+        successMessage.classList.add('show');
+        form.reset();
+        // scroll success into view on mobile
+        successMessage.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      } catch (err) {
+        alert('제출에 실패했습니다. 잠시 후 다시 시도해주세요.');
+        console.error(err);
+      }
     });
   </script>
-
 </body>
 </html>
