@@ -58,15 +58,14 @@
       position: relative;
       z-index: 1;
     }
-    .cover-text .date {
-      font-size: 1.4rem;
+    .cover-text .names {
+      font-size: 1.6rem;
       font-weight: 600;
-      letter-spacing: 2px;
+      margin-bottom: 0.4rem;
     }
-    .cover-text .day {
-      font-size: 1rem;
-      margin-top: 6px;
-      letter-spacing: 2px;
+    .cover-text .invite-line {
+      font-size: 1.1rem;
+      font-weight: 400;
     }
 
     /* --- Info --- */
@@ -74,18 +73,11 @@
       padding: 2rem 1rem;
       text-align: center;
     }
-    .invite-line {
-      font-size: 1.2rem;
-      margin-bottom: 0.6rem;
-    }
-    .venue {
+    .details {
       font-size: 1rem;
       margin-bottom: 0.8rem;
       color: var(--muted);
-    }
-    .names {
-      font-size: 1.6rem;
-      margin: 0;
+      line-height: 1.6;
     }
 
     /* --- Form --- */
@@ -111,16 +103,17 @@
     <!-- Cover -->
     <div class="cover">
       <div class="cover-text">
-        <div class="date">2025 | 10 | 04</div>
-        <div class="day">SATURDAY</div>
+        <div class="names">이현섭 & 김수민</div>
+        <div class="invite-line">혼인서약식에 초대합니다</div>
       </div>
     </div>
 
     <!-- Info -->
     <div class="info">
-      <p class="invite-line">혼인서약식에 초대합니다</p>
-      <p class="venue">Madang Restaurant</p>
-      <h2 class="names">이현섭 | 김수민</h2>
+      <p class="details">
+        🗓 2025. 10. 04 SAT 5:00 PM<br />
+        📍 Madang Restaurant
+      </p>
     </div>
 
     <!-- RSVP Form -->
