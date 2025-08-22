@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>혼인서약식 초대장</title>
+  <style>
+    body {
+      font-family: 'Noto Sans KR', sans-serif;
+      margin: 0;
+      padding: 0;
+      background: #fdfdfd;
+      color: #333;
+    }
+    .cover {
+      background: url('https://i.imgur.com/hrLOH6c.jpeg') center/cover no-repeat;
+      height: 60vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      font-size: 1.8rem;
+      font-weight: bold;
+      text-shadow: 0px 2px 8px rgba(0,0,0,0.4);
+    }
+    .info {
+      padding: 2rem;
+      text-align: center;
+      line-height: 1.6;
+    }
+    .info h2 {
+      margin-bottom: 1rem;
+      font-size: 1.4rem;
+    }
+    form {
+      padding: 2rem;
+      text-align: center;
+    }
+    input, select, button {
+      width: 90%;
+      max-width: 300px;
+      margin: 0.5rem auto;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+    }
+    button {
+      background: #333;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #555;
+    }
+    .success-message {
+      display: none;
+      text-align: center;
+      color: green;
+      font-weight: bold;
+      margin-top: 1rem;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Cover -->
+  <div class="cover">
+    <div>혼인서약식에 초대합니다</div>
+  </div>
+
+  <!-- Info -->
+  <div class="info">
+    <h2>김수민 & 홍길동</h2>
+    <p>2025년 10월 4일 토요일 오후 5시<br>
+       Madang Restaurant (뉴저지)</p>
+  </div>
+
+  <!-- RSVP Form -->
+  <form id="rsvpForm">
+    <input type="text" name="name" placeholder="이름" required>
+    <select name="attendance" required>
+      <option value="">참석 여부 선택</option>
+      <option value="참석">참석합니다</option>
+      <option value="불참">불참합니다</option>
+    </select>
+    <button type="submit">제출하기</button>
+  </form>
+  <div class="success-message">제출해주셔서 감사합니다!</div>
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec"; 
+    const form = document.getElementById("rsvpForm");
+    const successMessage = document.querySelector(".success-message");
+
+    form.addEventListener("submit", e => {
+      e.preventDefault();
+      const formData = {
+        name: form.name.value,
+        attendance: form.attendance.value
+      };
+      fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(formData)
+      })
+      .then(response => {
+        if (response.ok) {
+          successMessage.style.display = "block";
+          form.reset();
+        } else {
+          alert("제출에 실패했습니다. 다시 시도해주세요.");
+        }
+      })
+      .catch(error => alert("에러 발생: " + error.message));
+    });
+  </script>
+
+</body>
+</html>
