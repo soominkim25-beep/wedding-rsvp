@@ -7,10 +7,9 @@
   <title>혼인서약식 초대장</title>
 
   <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&family=Song+Myung&family=Nanum+Brush+Script&family=East+Sea+Dokdo&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic&display=swap" rel="stylesheet" />
 
   <style>
-    /* --- Layout: mobile-first, fixed-width card even on desktop --- */
     :root {
       --card-max-width: 420px;
       --text: #333;
@@ -38,39 +37,56 @@
       box-shadow: 0 0 12px rgba(0,0,0,0.08);
     }
 
-    /* --- Cover (no overlay text) --- */
+    /* --- Cover --- */
     .cover {
       background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
-      height: 45vh;
+      height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
+    .cover::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.35);
+    }
+    .cover-text {
+      position: relative;
+      z-index: 1;
+    }
+    .cover-text .date {
+      font-size: 1.4rem;
+      font-weight: 600;
+      letter-spacing: 2px;
+    }
+    .cover-text .day {
+      font-size: 1rem;
+      margin-top: 6px;
+      letter-spacing: 2px;
     }
 
-    /* --- Info Block --- */
-    .info { padding: 20px 18px 10px; text-align: center; line-height: 1.55; }
-
-    /* Date (stacked vertically) — new hand-written font */
-    .wedding-date {
-      font-family: 'East Sea Dokdo', cursive; /* changed */
-      font-size: 3rem; /* large but mobile-friendly */
-      font-weight: 400;
-      line-height: 1.05;
-      margin: 6px auto 10px;
-      color: var(--text);
-      letter-spacing: 0.5px;
+    /* --- Info --- */
+    .info {
+      padding: 2rem 1rem;
+      text-align: center;
     }
-
-    /* Names in Song Myung */
-    .names { font-family: 'Song Myung', serif; font-size: 1.9rem; margin: 0 0 8px; }
-
-    /* Invite line under names, same font as date */
     .invite-line {
-      font-family: 'East Sea Dokdo', cursive; /* same as date */
-      font-size: 1.6rem;
-      margin: 0 0 14px;
-      color: var(--text);
+      font-size: 1.2rem;
+      margin-bottom: 0.6rem;
     }
-
-    .greeting { font-size: 0.98rem; margin: 0 auto 14px; color: var(--muted); }
-    .details { font-size: 0.98rem; margin: 0 auto 8px; }
+    .venue {
+      font-size: 1rem;
+      margin-bottom: 0.8rem;
+      color: var(--muted);
+    }
+    .names {
+      font-size: 1.6rem;
+      margin: 0;
+    }
 
     /* --- Form --- */
     form { padding: 16px 18px 24px; text-align: center; }
@@ -92,34 +108,19 @@
 </head>
 <body>
   <div class="container">
-    <!-- Cover (no text on image) -->
-    <div class="cover"></div>
+    <!-- Cover -->
+    <div class="cover">
+      <div class="cover-text">
+        <div class="date">2025 | 10 | 04</div>
+        <div class="day">SATURDAY</div>
+      </div>
+    </div>
 
     <!-- Info -->
     <div class="info">
-      <!-- Stacked Date -->
-      <div class="wedding-date" aria-label="날짜 2025년 10월 4일">
-        <div>10</div>
-        <div>04</div>
-        <div>2025</div>
-      </div>
-
-      <!-- Names -->
-      <h2 class="names">이현섭 & 김수민</h2>
       <p class="invite-line">혼인서약식에 초대합니다</p>
-
-      <!-- Greeting -->
-      <p class="greeting">
-        서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
-        하나님 앞에서 함께 서약하려 합니다.<br />
-        귀한 걸음 하셔서 축복해 주시길 부탁드립니다.
-      </p>
-
-      <!-- Details -->
-      <p class="details">
-        🗓️ 2025년 10월 4일 토요일 오후 5시<br />
-        📍 Madang Restaurant (뉴저지)
-      </p>
+      <p class="venue">Madang Restaurant</p>
+      <h2 class="names">이현섭 | 김수민</h2>
     </div>
 
     <!-- RSVP Form -->
@@ -145,15 +146,12 @@
   </div>
 
   <script>
-    // Google Apps Script Web App URL
     const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec";
-
     const form = document.getElementById('rsvpForm');
     const successMessage = document.querySelector('.success-message');
 
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
-
       const name = form.name.value.trim();
       const attendance = form.attendance.value;
       if (!name || !attendance) { alert('이름과 참석 여부를 입력해주세요.'); return; }
