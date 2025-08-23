@@ -6,11 +6,11 @@
   <meta name="theme-color" content="#fdfbf7" />
   <title>혼인서약식 초대장</title>
 
-  <!-- Google Fonts: Cinzel (섹션1 메타), Sacramento (섹션2 포인트) -->
-  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet" />
+  <!-- Cinzel & Sacramento (Google Fonts) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Sacramento&display=swap" rel="stylesheet">
 
   <style>
-    /* Maru Buri (네이버 한글 웹폰트 CDN) */
+    /* Maru Buri (Naver Hangeul CDN) */
     @font-face {
       font-family: 'MaruBuri';
       src: url('https://hangeul.pstatic.net/hangeul_static/webfont/MaruBuri/MaruBuri-Regular.woff2') format('woff2'),
@@ -46,10 +46,10 @@
       height: 100%;
       margin: 0;
       padding: 0;
+      font-family: 'MaruBuri', serif;
       background: var(--outer-bg);
       color: var(--text);
       scroll-behavior: smooth;
-      font-family: 'MaruBuri', serif; /* 기본 */
     }
 
     .section {
@@ -66,96 +66,133 @@
       align-items: center;
     }
 
-    /* 섹션 1: 잡지 표지 */
-    .top-header { text-align: center; margin-bottom: 1.1rem; }
-    .top-header .date-line {
-      font-family: 'MaruBuriLight','MaruBuri', serif;
-      font-size: 1.2rem; letter-spacing: 2px; line-height: 1.2; color: var(--muted); margin: 0;
-    }
-    .top-header .sub {
-      font-family: 'Sacramento', cursive;
-      font-size: 1.4rem; color: var(--muted); margin-top: 0.15rem;
-    }
+    /* Section 1 */
+    .hero { text-align: center; }
+    .hero .above { margin-bottom: 1rem; }
+    .hero .names { font-family:'MaruBuriLight','MaruBuri',serif; font-size: 1.4rem; margin: 0; }
+    .hero .invite { font-family:'MaruBuriLight','MaruBuri',serif; font-size: 1.05rem; color: var(--muted); margin: .35rem 0 0; }
+    .hero .decor { position: relative; display:inline-block; }
+    .hero .decor svg { position:absolute; width:20px; height:20px; top:-10px; }
+    .hero .decor .fl1 { left:-28px; }
+    .hero .decor .fl2 { right:-28px; transform: rotate(8deg); }
 
-    .cover {
-      background: url('https://i.imgur.com/VlZRYf6.jpeg') center/cover no-repeat;
-      width: 100%; height: 47vh; margin: 1rem 0 1.4rem; border-radius: 10px;
-    }
+    /* Arched photo using inline SVG */
+    .arch-wrap { width: 100%; max-width: 340px; margin: 0 auto 1rem; }
+    .arch-wrap svg { width: 100%; height: auto; display:block; }
 
-    .title-block { text-align: center; margin-top: .4rem; }
-    .title-block .names {
-      font-family: 'MaruBuriLight','MaruBuri', serif;
-      font-size: 1.55rem; margin-bottom: .28rem;
-    }
-    .title-block .date, .title-block .venue {
-      font-family: 'Cinzel', serif;
-      font-size: 1rem; letter-spacing: .5px; text-transform: uppercase;
-      color: var(--muted); margin: .18rem 0;
-    }
+    .hero .below { margin-top: .8rem; }
+    .hero .below .meta { font-family:'Cinzel',serif; font-size: .98rem; color: var(--muted); letter-spacing:.5px; text-transform: uppercase; }
 
-    /* 섹션 2: Save the Date + 인사말 + RSVP */
-    .save-title {
-      font-family: 'Sacramento', cursive;
-      font-size: 1.9rem; color: var(--muted); margin: 0 0 .6rem; text-align: center;
-    }
-    .greeting {
-      font-family: 'MaruBuriLight','MaruBuri', serif;
-      text-align: center; font-size: 1rem; color: var(--muted);
-      line-height: 1.7; margin: 0 0 1.1rem;
-    }
-    .detail { text-align: center; margin: .6rem 0 1.2rem; }
-    .detail .date, .detail .venue {
-      display: block; font-family: 'MaruBuri', serif; font-weight: 600; color: var(--text);
-      margin: .15rem 0;
-    }
+    /* Section 2 */
+    .save-title { font-family: 'Sacramento', cursive; font-size: 1.8rem; text-align:center; margin: 0.2rem 0 .6rem; color: var(--muted); position: relative; }
+    .save-title .star { position:absolute; top:-2px; width:18px; height:18px; }
+    .save-title .left { left: -12px; }
+    .save-title .right { right: -12px; }
 
-    /* RSVP */
-    form { width: 100%; max-width: 340px; text-align: center; }
-    .field { margin-bottom: 1.1rem; text-align: left; }
-    .label {
-      font-family: 'MaruBuriLight','MaruBuri', serif;
-      display: block; font-size: .95rem; margin-bottom: .4rem; color: var(--text);
-    }
+    .greeting { font-family:'MaruBuriLight','MaruBuri',serif; text-align: center; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
+    .detail { text-align:center; margin:.6rem 0 1rem; }
+    .detail .date, .detail .venue { display:block; font-family:'MaruBuri', serif; font-weight:600; color: var(--text); margin:0.2rem 0; }
+
+    /* Simple calendar */
+    .calendar { width: 100%; max-width: 320px; margin: .6rem auto 1.2rem; border:1px solid var(--border); border-radius:12px; padding:10px 12px; box-sizing:border-box; }
+    .cal-head { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; font-family:'MaruBuriLight','MaruBuri',serif; font-size:.85rem; color:var(--muted); text-align:center; margin-bottom:6px; }
+    .cal-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
+    .cal-cell { font-family:'MaruBuriLight','MaruBuri',serif; font-size:.95rem; text-align:center; padding:8px 0; border-radius:8px; }
+    .cal-cell.dim { color:#b7a99b; }
+    .cal-cell.emph { background:#efe8de; color:var(--text); font-family:'MaruBuri',serif; font-weight:600; }
+
+    form { width: 100%; max-width: 340px; text-align: center; margin-top:1rem; }
+    .field { margin-bottom: 1.2rem; text-align: left; }
+    .label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); font-family:'MaruBuriLight','MaruBuri',serif; }
     input, select, button {
       width: 100%; padding: 14px 13px; border-radius: 12px; border: 1px solid var(--border);
       font-size: 1rem; box-sizing: border-box; color: var(--text); background: #fff;
     }
-    input:focus, select:focus, button:focus { outline: 2px solid #d9c9b8; outline-offset: 1px; }
-    button {
-      font-family: 'MaruBuri', serif;  /* 제출하기 버튼 폰트 */
-      background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background .15s;
-    }
+    button { font-family:'MaruBuri',serif; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
     button:hover { background: var(--btn-hover); }
 
     .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin-top: 1rem; }
     .success-message.show { display: block; }
 
-    /* 페이드 인 애니메이션 */
-    .fade-in { opacity: 0; transform: translateY(40px); transition: all .8s ease-out; }
+    /* Fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
+    .fade-in.visible { opacity: 1; transform: translateY(0); }
+    .save-title-wrap { display: flex; justify-content: space-between; align-items: center; width: 100%; }
+    .save-title { font-family: 'Sacramento', cursive; font-size: 1.8rem; text-align:center; color: var(--muted); flex:1; }
+    .star { width: 22px; height: 22px; color: var(--muted); }
+
+    .greeting { font-family:'MaruBuriLight','MaruBuri',serif; text-align: center; font-size: 1rem; color: var(--muted); line-height: 1.7; margin: 1rem 0; }
+    .detail { text-align:center; margin:.8rem 0 1.2rem; }
+    .detail .date, .detail .venue { display:block; font-family:'MaruBuri', serif; font-weight:600; color: var(--text); margin:0.3rem 0; }
+
+    .calendar { font-family:'MaruBuriLight','MaruBuri',serif; margin:1rem 0; text-align:center; }
+    .calendar table { margin:0 auto; border-collapse: collapse; }
+    .calendar th, .calendar td { padding: 4px 8px; font-size:0.9rem; }
+    .calendar .highlight { font-weight:600; background:#e6dfd6; border-radius:50%; }
+
+    form { width: 100%; max-width: 340px; text-align: center; margin-top:1rem; }
+    .field { margin-bottom: 1.2rem; text-align: left; }
+    .label { display: block; font-size: 0.95rem; margin-bottom: 0.4rem; color: var(--text); font-family:'MaruBuriLight','MaruBuri',serif; }
+    input, select, button {
+      width: 100%;
+      padding: 14px 13px;
+      border-radius: 12px;
+      border: 1px solid var(--border);
+      font-size: 1rem;
+      box-sizing: border-box;
+      color: var(--text);
+      background: #fff;
+    }
+    button { font-family:'MaruBuri',serif; background: var(--btn); color: #fff; border: none; cursor: pointer; transition: background 0.15s; }
+    button:hover { background: var(--btn-hover); }
+
+    .success-message { display: none; text-align: center; color: var(--success); font-weight: 700; margin-top: 1rem; }
+    .success-message.show { display: block; }
+
+    /* Fade-in animation */
+    .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
   </style>
 </head>
 <body>
 
-  <!-- SECTION 1 -->
-  <section class="section" id="intro">
-    <div class="top-header">
-      <div class="date-line">2025.10.04</div>
-      <div class="sub">Save the Date</div>
+  <!-- Section 1: Intro -->
+  <section class="section hero" id="intro">
+    <div class="above fade-in">
+      <div class="decor" aria-hidden="true">
+        <svg class="fl1" viewBox="0 0 24 24"><path fill="none" stroke="#a86d3b" stroke-width="1.5" d="M12 6c-1.2 1.6-2.4 1.6-3.6 0 1.2 1.6 1.2 2.8 0 4 1.2-1.2 2.4-1.2 3.6 0-1.2-1.2-1.2-2.4 0-4Z"/></svg>
+        <svg class="fl2" viewBox="0 0 24 24"><path fill="none" stroke="#a86d3b" stroke-width="1.5" d="M12 6c1.2 1.6 2.4 1.6 3.6 0-1.2 1.6-1.2 2.8 0 4-1.2-1.2-2.4-1.2-3.6 0 1.2-1.2 1.2-2.4 0-4Z"/></svg>
+      </div>
+      <h1 class="names">이현섭 & 김수민</h1>
+      <div class="invite">혼인서약식에 초대합니다</div>
     </div>
 
-    <div class="cover" aria-label="커버 이미지"></div>
+    <div class="arch-wrap fade-in" style="transition-delay:.05s">
+      <svg viewBox="0 0 600 720" xmlns="http://www.w3.org/2000/svg" aria-label="아치형 사진">
+        <defs>
+          <clipPath id="arch">
+            <path d="M 300 0 C 150 0 40 110 40 260 L 40 700 L 560 700 L 560 260 C 560 110 450 0 300 0 Z" />
+          </clipPath>
+        </defs>
+        <image href="https://i.imgur.com/VlZRYf6.jpeg" x="40" y="0" width="520" height="700" preserveAspectRatio="xMidYMid slice" clip-path="url(#arch)"/>
+        <path d="M 300 0 C 150 0 40 110 40 260 L 40 700 L 560 700 L 560 260 C 560 110 450 0 300 0 Z" fill="none" stroke="#a86d3b" stroke-width="2"/>
+      </svg>
+    </div>
 
-    <div class="title-block">
-      <div class="names">이현섭 & 김수민</div>
-      <div class="date">2025.10.04 SAT 17:30 PM</div>
-      <div class="venue">MADANG RESTAURANT</div>
+    <div class="below fade-in" style="transition-delay:.1s">
+      <div class="meta">2025.10.04 SAT 17:30 PM</div>
+      <div class="meta">MADANG RESTAURANT</div>
     </div>
   </section>
 
-  <!-- SECTION 2 -->
+  <!-- Section 2: Greeting & RSVP -->
   <section class="section" id="rsvp">
-    <h2 class="save-title fade-in">Save the Date</h2>
+    <h2 class="save-title fade-in">
+      <svg class="star left" viewBox="0 0 24 24" aria-hidden="true"><path fill="#7a6a59" d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>
+      Save the Date
+      <svg class="star right" viewBox="0 0 24 24" aria-hidden="true"><path fill="#7a6a59" d="M12 2l2 6 6 2-6 2-2 6-2-6-6-2 6-2z"/></svg>
+    </h2>
+
     <p class="greeting fade-in">
       서로를 향한 믿음으로 하나 되는 저희 두 사람이<br />
       하나님 앞에서 함께 서약하려 합니다.<br />
@@ -167,8 +204,50 @@
       <span class="venue">Madang Restaurant</span>
     </div>
 
-    <!-- RSVP 폼 (이름 & 참석여부 + 제출하기) -->
-    <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.1s">
+    <!-- Calendar (예시: 2025년 10월) -->
+    <div class="calendar fade-in" style="transition-delay:.08s">
+      <div class="cal-head">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="cal-grid">
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell dim">1</div>
+        <div class="cal-cell dim">2</div>
+        <div class="cal-cell dim">3</div>
+        <div class="cal-cell emph">4</div>
+        <div class="cal-cell">5</div>
+        <div class="cal-cell">6</div>
+        <div class="cal-cell">7</div>
+        <div class="cal-cell">8</div>
+        <div class="cal-cell">9</div>
+        <div class="cal-cell">10</div>
+        <div class="cal-cell">11</div>
+        <div class="cal-cell">12</div>
+        <div class="cal-cell">13</div>
+        <div class="cal-cell">14</div>
+        <div class="cal-cell">15</div>
+        <div class="cal-cell">16</div>
+        <div class="cal-cell">17</div>
+        <div class="cal-cell">18</div>
+        <div class="cal-cell">19</div>
+        <div class="cal-cell">20</div>
+        <div class="cal-cell">21</div>
+        <div class="cal-cell">22</div>
+        <div class="cal-cell">23</div>
+        <div class="cal-cell">24</div>
+        <div class="cal-cell">25</div>
+        <div class="cal-cell">26</div>
+        <div class="cal-cell">27</div>
+        <div class="cal-cell">28</div>
+        <div class="cal-cell">29</div>
+        <div class="cal-cell">30</div>
+        <div class="cal-cell">31</div>
+      </div>
+    </div>
+
+    <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.12s"> novalidate class="fade-in" style="transition-delay:.1s">
       <div class="field">
         <label class="label" for="name">이름</label>
         <input id="name" name="name" type="text" placeholder="이름" required autocomplete="name" />
@@ -188,12 +267,11 @@
   </section>
 
   <script>
-    // Google Apps Script Web App URL
+    // RSVP submission
     const scriptURL = "https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec";
     const form = document.getElementById('rsvpForm');
     const successMessage = document.querySelector('.success-message');
 
-    // Submit to Google Sheet
     form.addEventListener('submit', async (e) => {
       e.preventDefault();
       const name = form.name.value.trim();
@@ -203,9 +281,7 @@
       const payload = { name, attendance };
       try {
         const res = await fetch(scriptURL, {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify(payload)
         });
         if (!res.ok) throw new Error('응답 오류');
         successMessage.classList.add('show');
@@ -217,13 +293,16 @@
       }
     });
 
-    // Fade-in on scroll
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) entry.target.classList.add('visible');
+    // Intersection Observer for fade-in
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
       });
     }, { threshold: 0.1 });
-    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
   </script>
 </body>
 </html>
