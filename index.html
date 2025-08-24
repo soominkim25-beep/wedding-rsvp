@@ -96,7 +96,7 @@
     /* Simple calendar */
     .calendar { width: 100%; max-width: 320px; margin: .6rem auto 1.2rem; border:1px solid var(--border); border-radius:12px; padding:10px 12px; box-sizing:border-box; }
     .cal-head { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; font-family:'MaruBuriLight','MaruBuri',serif; font-size:.85rem; color:var(--muted); text-align:center; margin-bottom:6px; }
-    .cal-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; grid-auto-rows: 1fr; }
+    .cal-grid { display:grid; grid-template-columns: repeat(7, 1fr); gap:6px; }
     .cal-cell { font-family:'MaruBuriLight','MaruBuri',serif; font-size:.95rem; text-align:center; padding:8px 0; border-radius:8px; }
     .cal-cell.dim { color:#b7a99b; }
     .cal-cell.emph { background:#efe8de; color:var(--text); font-family:'MaruBuri',serif; font-weight:600; }
@@ -226,42 +226,7 @@
     </div>
 
     <!-- Calendar (예시: 2025년 10월) -->
-    <div class="calendar fade-in" style="transition-delay:.08s">
-      <div class="cal-head">
-        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
-      </div>
-      <div class="cal-grid" style="display:grid;grid-template-columns:repeat(7,1fr);gap:6px">
-        <div class="cal-cell dim"></div>
-        <div class="cal-cell dim"></div>
-        <div class="cal-cell dim"></div>
-        <div class="cal-cell">1</div>
-        <div class="cal-cell">2</div>
-        <div class="cal-cell">3</div>
-        <div class="cal-cell emph">4</div>
-        <div class="cal-cell">5</div>
-        <div class="cal-cell">6</div>
-        <div class="cal-cell">7</div>
-        <div class="cal-cell">8</div>
-        <div class="cal-cell">9</div>
-        <div class="cal-cell">10</div>
-        <div class="cal-cell">11</div>
-      </div>
-        <div class="cal-cell dim"></div>
-        <div class="cal-cell dim">1</div>
-        <div class="cal-cell">2</div>
-        <div class="cal-cell">3</div>
-        <div class="cal-cell emph">4</div>
-        <div class="cal-cell">5</div>
-        <div class="cal-cell">6</div>
-        <div class="cal-cell">7</div>
-        <div class="cal-cell">8</div>
-        <div class="cal-cell">9</div>
-        <div class="cal-cell">10</div>
-        <div class="cal-cell">11</div>
-      </div>
-    </div>
-
-    <div id="countdown" class="fade-in" style="transition-delay:.1s; text-align:center; font-family:'MaruBuriLight','MaruBuri',serif; font-size:1rem; color:var(--muted); margin-bottom:1rem;"></div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
       </div>
       <div class="cal-grid">
         <div class="cal-cell dim"></div>
@@ -279,11 +244,22 @@
         <div class="cal-cell">10</div>
         <div class="cal-cell">11</div>
       </div>
+    </div>
+
+    <!-- D-DAY component -->
+    
+
+    <div class="calendar fade-in" style="transition-delay:.08s">
+      <div class="cal-head">
+        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+      </div>
+      <div class="cal-grid">
         <div class="cal-cell dim"></div>
         <div class="cal-cell dim"></div>
-        <div class="cal-cell dim">1</div>
-        <div class="cal-cell dim">2</div>
-        <div class="cal-cell dim">3</div>
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell">1</div>
+        <div class="cal-cell">2</div>
+        <div class="cal-cell">3</div>
         <div class="cal-cell emph">4</div>
         <div class="cal-cell">5</div>
         <div class="cal-cell">6</div>
@@ -292,34 +268,14 @@
         <div class="cal-cell">9</div>
         <div class="cal-cell">10</div>
         <div class="cal-cell">11</div>
-        <div class="cal-cell">12</div>
-        <div class="cal-cell">13</div>
-        <div class="cal-cell">14</div>
-        <div class="cal-cell">15</div>
-        <div class="cal-cell">16</div>
-        <div class="cal-cell">17</div>
-        <div class="cal-cell">18</div>
-        <div class="cal-cell">19</div>
-        <div class="cal-cell">20</div>
-        <div class="cal-cell">21</div>
-        <div class="cal-cell">22</div>
-        <div class="cal-cell">23</div>
-        <div class="cal-cell">24</div>
-        <div class="cal-cell">25</div>
-        <div class="cal-cell">26</div>
-        <div class="cal-cell">27</div>
-        <div class="cal-cell">28</div>
-        <div class="cal-cell">29</div>
-        <div class="cal-cell">30</div>
-        <div class="cal-cell">31</div>
       </div>
     </div>
 
-    <!-- D-DAY component -->
+    <!-- D-DAY component (single source of truth) -->
     <div class="d-day fade-in" style="transition-delay:.1s">
-      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
+      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ebbbeb" d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
       <span class="dtext">혼인서약식 <span id="ddayNum" class="n">0</span>일 전</span>
-      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
+      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ebbbeb" d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
     </div>
 
     <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.12s"> 
