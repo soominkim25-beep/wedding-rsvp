@@ -86,8 +86,8 @@
     /* Section 2 */
     .save-title { font-family: 'Sacramento', cursive; font-size: 1.8rem; text-align:center; margin: 0.2rem 0 .6rem; color: var(--muted); position: relative; }
     .save-title .star { position:absolute; top:-2px; width:18px; height:18px; }
-    .save-title .left { left: -12px; }
-    .save-title .right { right: -12px; }
+    .save-title .left { left: -28px; }
+    .save-title .right { right: -28px; }
 
     .greeting { font-family:'MaruBuriLight','MaruBuri',serif; text-align: center; font-size: 1rem; color: var(--muted); line-height: 1.7; margin-bottom: 1rem; }
     .detail { text-align:center; margin:.6rem 0 1rem; }
@@ -152,6 +152,15 @@
     /* Fade-in animation */
     .fade-in { opacity: 0; transform: translateY(40px); transition: all 0.8s ease-out; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
+  .detail .venue a { color: var(--text); text-decoration: underline; }
+
+    /* subtle paper texture */
+    .section { position: relative; overflow: hidden; }
+    .section::before {
+      content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06;
+      background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='2' stitchTiles='stitch'/><feColorMatrix type='saturate' values='0'/><feComponentTransfer><feFuncA type='table' tableValues='0 0.35'/></feComponentTransfer></filter><rect width='100%' height='100%' filter='url(%23n)'/></svg>");
+      background-size: 200px 200px;
+    }
   </style>
 </head>
 <body>
@@ -159,10 +168,6 @@
   <!-- Section 1: Intro -->
   <section class="section hero" id="intro">
     <div class="above fade-in">
-      <div class="decor" aria-hidden="true">
-        <svg class="fl1" viewBox="0 0 24 24"><path fill="none" stroke="#a86d3b" stroke-width="1.5" d="M12 6c-1.2 1.6-2.4 1.6-3.6 0 1.2 1.6 1.2 2.8 0 4 1.2-1.2 2.4-1.2 3.6 0-1.2-1.2-1.2-2.4 0-4Z"/></svg>
-        <svg class="fl2" viewBox="0 0 24 24"><path fill="none" stroke="#a86d3b" stroke-width="1.5" d="M12 6c1.2 1.6 2.4 1.6 3.6 0-1.2 1.6-1.2 2.8 0 4-1.2-1.2-2.4-1.2-3.6 0 1.2-1.2 1.2-2.4 0-4Z"/></svg>
-      </div>
       <h1 class="names">이현섭 & 김수민</h1>
       <div class="invite">혼인서약식에 초대합니다</div>
     </div>
@@ -175,7 +180,16 @@
           </clipPath>
         </defs>
         <image href="https://i.imgur.com/VlZRYf6.jpeg" x="40" y="0" width="520" height="700" preserveAspectRatio="xMidYMid slice" clip-path="url(#arch)"/>
+        <!-- Arch stroke -->
         <path d="M 300 0 C 150 0 40 110 40 260 L 40 700 L 560 700 L 560 260 C 560 110 450 0 300 0 Z" fill="none" stroke="#a86d3b" stroke-width="2"/>
+        <!-- Side decorative dots (left) -->
+        <circle cx="28" cy="300" r="4" fill="#a86d3b"/>
+        <circle cx="28" cy="360" r="4" fill="#a86d3b"/>
+        <circle cx="28" cy="420" r="4" fill="#a86d3b"/>
+        <!-- Side decorative dots (right) -->
+        <circle cx="572" cy="300" r="4" fill="#a86d3b"/>
+        <circle cx="572" cy="360" r="4" fill="#a86d3b"/>
+        <circle cx="572" cy="420" r="4" fill="#a86d3b"/>
       </svg>
     </div>
 
@@ -201,7 +215,7 @@
 
     <div class="detail fade-in" style="transition-delay:.05s">
       <span class="date">2025년 10월 4일 (토) 오후 5시 30분</span>
-      <span class="venue">Madang Restaurant</span>
+      <span class="venue"><a href="https://maps.app.goo.gl/terbYLUMMGxNJwVKA" target="_blank" rel="noopener">Madang Restaurant</a></span>
     </div>
 
     <!-- Calendar (예시: 2025년 10월) -->
@@ -211,6 +225,20 @@
       </div>
       <div class="cal-grid">
         <div class="cal-cell dim"></div>
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell dim"></div>
+        <div class="cal-cell">1</div>
+        <div class="cal-cell">2</div>
+        <div class="cal-cell">3</div>
+        <div class="cal-cell emph">4</div>
+        <div class="cal-cell">5</div>
+        <div class="cal-cell">6</div>
+        <div class="cal-cell">7</div>
+        <div class="cal-cell">8</div>
+        <div class="cal-cell">9</div>
+        <div class="cal-cell">10</div>
+        <div class="cal-cell">11</div>
+      </div>
         <div class="cal-cell dim"></div>
         <div class="cal-cell dim"></div>
         <div class="cal-cell dim">1</div>
@@ -247,7 +275,7 @@
       </div>
     </div>
 
-    <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.12s"> novalidate class="fade-in" style="transition-delay:.1s">
+    <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.12s"> 
       <div class="field">
         <label class="label" for="name">이름</label>
         <input id="name" name="name" type="text" placeholder="이름" required autocomplete="name" />
