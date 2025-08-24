@@ -168,6 +168,16 @@
     .d-day .dtext { color: var(--muted); font-family:'MaruBuriLight','MaruBuri',serif; }
     .d-day .n { color:#cb7c3e; margin: 0 2px; font-family:'MaruBuri','serif'; font-weight:600; }
     .d-day .heart { width:14px; height:14px; fill:#ebbbeb; }
+  .detail .venue a { color: var(--text); text-decoration: underline; }
+
+    .countdown { display:flex; justify-content:center; gap:10px; margin:1rem 0; }
+    .cd-box { background:#f7f4f0; padding:10px 12px; border-radius:8px; text-align:center; min-width:52px; }
+    .cd-box span { display:block; font-size:1.2rem; font-weight:600; color:var(--text); font-family:'MaruBuri','serif'; }
+    .cd-box small { font-size:0.65rem; color:var(--muted); letter-spacing:1px; }
+    .cd-text { text-align:center; font-family:'MaruBuriLight','MaruBuri',serif; color:var(--muted); margin-bottom:1.2rem; }
+    .cd-text .n { color:#e8d485; font-weight:600; }
+
+    .arch-wrap path { display:none; }
   </style>
 </head>
 <body>
@@ -249,9 +259,7 @@
     <!-- D-DAY component -->
     
 
-    <div class="calendar fade-in" style="transition-delay:.08s">
-      <div class="cal-head">
-        <div>Sun</div><div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
+    <div>Mon</div><div>Tue</div><div>Wed</div><div>Thu</div><div>Fri</div><div>Sat</div>
       </div>
       <div class="cal-grid">
         <div class="cal-cell dim"></div>
@@ -271,12 +279,14 @@
       </div>
     </div>
 
-    <!-- D-DAY component (single source of truth) -->
-    <div class="d-day fade-in" style="transition-delay:.1s">
-      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ebbbeb" d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
-      <span class="dtext">혼인서약식 <span id="ddayNum" class="n">0</span>일 전</span>
-      <svg class="heart" viewBox="0 0 24 24" aria-hidden="true"><path fill="#ebbbeb" d="M12 21s-6.716-4.35-9.193-7.183C.61 11.42 1.104 8.5 3.41 7.29 5.06 6.4 6.97 6.9 8 8.26 9.03 6.9 10.94 6.4 12.59 7.29c2.306 1.21 2.8 4.13.603 6.527C18.716 16.65 12 21 12 21z"/></svg>
+    <!-- Countdown component -->
+    <div class="countdown fade-in" style="transition-delay:.1s">
+      <div class="cd-box"><span id="cd-days">00</span><small>DAYS</small></div>
+      <div class="cd-box"><span id="cd-hours">00</span><small>HOUR</small></div>
+      <div class="cd-box"><span id="cd-mins">00</span><small>MIN</small></div>
+      <div class="cd-box"><span id="cd-secs">00</span><small>SEC</small></div>
     </div>
+    <p class="cd-text fade-in" style="transition-delay:.15s">현섭 ♥ 수민의 혼인신고식이 <span id="cd-days-text" class="n">0</span>일 남았습니다</p>
 
     <form id="rsvpForm" novalidate class="fade-in" style="transition-delay:.12s"> 
       <div class="field">
@@ -366,6 +376,35 @@
       if (diff < 0) diff = 0;
       const el = document.getElementById('ddayNum');
       if (el) el.textContent = String(diff);
+    })();
+  </script>
+<script>
+    // Countdown script (America/New_York)
+    (function(){
+      const eventDate = new Date('2025-10-04T17:30:00-04:00');
+      function updateCountdown(){
+        const now = new Date();
+        const diff = eventDate - now;
+        if(diff < 0){
+          document.getElementById('cd-days').textContent = '00';
+          document.getElementById('cd-hours').textContent = '00';
+          document.getElementById('cd-mins').textContent = '00';
+          document.getElementById('cd-secs').textContent = '00';
+          document.getElementById('cd-days-text').textContent = '0';
+          return;
+        }
+        const d = Math.floor(diff/86400000);
+        const h = Math.floor((diff%86400000)/3600000);
+        const m = Math.floor((diff%3600000)/60000);
+        const s = Math.floor((diff%60000)/1000);
+        document.getElementById('cd-days').textContent = String(d).padStart(2,'0');
+        document.getElementById('cd-hours').textContent = String(h).padStart(2,'0');
+        document.getElementById('cd-mins').textContent = String(m).padStart(2,'0');
+        document.getElementById('cd-secs').textContent = String(s).padStart(2,'0');
+        document.getElementById('cd-days-text').textContent = String(d);
+      }
+      updateCountdown();
+      setInterval(updateCountdown,1000);
     })();
   </script>
 </body>
