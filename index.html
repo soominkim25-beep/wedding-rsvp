@@ -188,7 +188,8 @@ if (document.readyState !== 'loading') { DocumentReady(); } else { document.addE
       const attendance = document.getElementById('attendance').value;
       if(!name || !attendance){ alert('이름과 참석 여부를 입력해주세요.'); return; }
       try{
-        const res = await fetch(scriptURL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, attendance }) });
+        const params = new URLSearchParams(); params.append('name', name); params.append('attendance', attendance);
+        const res = await fetch(scriptURL, {method: 'POST', body: params});
         if(!res.ok) throw new Error('submit error');
         success.classList.add('show'); form.reset(); success.scrollIntoView({behavior:'smooth', block:'center'});
       }catch(err){ alert('제출에 실패했습니다. 잠시 후 다시 시도해주세요.'); console.error(err); }
