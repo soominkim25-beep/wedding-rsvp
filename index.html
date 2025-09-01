@@ -34,21 +34,56 @@
     }
 
     html, body { height: 100%; margin: 0; padding: 0; background: var(--cream); color: var(--brown); }
-    body { overflow: hidden; font-family: 'Nanum Gothic', sans-serif; }
+    body { font-family: 'Nanum Gothic', sans-serif; }
 
-    .snap-wrapper { height: auto; overflow-y: auto; scroll-snap-type: none; -webkit-overflow-scrolling: touch; }
-    section.screen { scroll-snap-align: none; min-height: auto; display: block; position: relative; }
+    /* 스냅 스크롤 복구 */
+    /* 섹션 스냅 복구 */
+    .snap-wrapper {
+      height: 100vh;
+      overflow-y: auto;
+      scroll-snap-type: y mandatory;
+      -webkit-overflow-scrolling: touch;
+    }
+    
+    section.screen {
+      scroll-snap-align: start;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+    
+    /* 페이드인 복구 */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(24px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    /* 카드 패딩 (스냅과 균형) */
+    .card {
+      width: 100%;
+      max-width: var(--card-max);
+      padding: .8rem;
+      box-sizing: border-box;
+      margin: 0 auto;
+    }
+    
+    /* 1페이지 커버 이미지는 10% 축소 유지 */
+    .cover-image {
+      width: 90%;
+      max-width: var(--card-max);
+      display: block;
+      height: auto;
+      margin: 2px auto 6px; /* 미세하게 값 변경하여 동일치환 방지 */
+    }
 
-    .card { width: 100%; max-width: var(--card-max); padding: 0; box-sizing: border-box; margin: 0 auto; }
-
-    .paper { position: relative; background: var(--cream); }
-    .paper::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06; background-image: radial-gradient(rgba(0,0,0,.18) 1px, transparent 1.5px); background-size: 6px 6px; }
-
-    .fade-in { opacity: 1; transform: none; transition: none; }
-    .fade-in.visible { opacity: 1; transform: none; }
-
-    /* Screen 1 */
-    .cover-image { width: 90%; max-width: var(--card-max); display:block; height:auto; margin: 0 auto 4px; }
 
     /* Screen 2 */
     .invite-wrap { text-align:center; }
@@ -68,19 +103,7 @@
     .cal-cell { text-align:center; padding: 6px 0; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; color: var(--brown); position: relative; }
     .cal-cell.dim { opacity: .35; }
     .cal-cell.emph { font-weight: 700; color: var(--cream); }
-    .cal-cell.emph::before {
-      content: "";
-      position: absolute;
-      top: 50%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 26px;
-      height: 26px;
-      background-color: var(--accent);
-      opacity: 0.35;
-      border-radius: 50%;
-      z-index: -1;
-    }
+    .cal-cell.emph::before { content: ""; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 26px; height: 26px; background-color: var(--accent); opacity: 0.35; border-radius: 50%; z-index: -1; }
 
     .event-lines { margin: 18px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 14px; line-height: 1.6; font-weight:700; }
     .event-lines a { color: var(--brown); text-decoration: underline; }
@@ -93,9 +116,7 @@
 
     .success { display:none; text-align:center; color:#2e7d32; font-weight:700; margin-top:10px; }
     .success.show { display:block; }
-  #screen1 .card { padding-top: 10px; }
-#screen2 .card { padding-top: 6px; }
-</style>
+  </style>
 </head>
 <body>
   <div class="snap-wrapper">
@@ -146,52 +167,49 @@
           장소: <a href="https://maps.app.goo.gl/terbYLUMMGxNJwVKA" target="_blank" rel="noopener">Madang Restaurant</a>
         </div>
 
-        <form id="rsvpForm" class="fade-in" style="transition-delay:.38s" novalidate>
+        <!-- Google Form 연동 -->
+        <form action="https://docs.google.com/forms/d/e/1FAIpQLSfcaAkOLbcPByZaSSvxFH0Xpei6p8RYn3ajLv79uVgqRoceFg/formResponse"
+              method="POST"
+              target="hidden_iframe"
+              onsubmit="afterSubmit()"
+              class="fade-in" style="transition-delay:.38s">
           <div class="field">
             <div class="label">이름</div>
-            <input type="text" id="name" name="name" placeholder="이름" required />
+            <input type="text" name="entry.1976039098" placeholder="이름" required />
           </div>
           <div class="field">
             <div class="label">참석 여부</div>
-            <select id="attendance" name="attendance" required>
-              <option value="" selected>참석 여부 선택</option>
+            <select name="entry.645190049" required>
+              <option value="">참석 여부 선택</option>
               <option value="참석">참석합니다</option>
               <option value="불참">불참합니다</option>
             </select>
           </div>
+
+          <input type="hidden" name="fvv" value="1">
+          <input type="hidden" name="draftResponse" value="[]">
+          <input type="hidden" name="pageHistory" value="0">
+
           <button type="submit">제출하기</button>
-          <div class="success" id="success">제출해주셔서 감사합니다!</div>
+          <div class="success" id="success">감사합니다!</div>
         </form>
+        <iframe name="hidden_iframe" style="display:none"></iframe>
       </div>
     </section>
   </div>
 
   <script>
-    // animations disabled for seamless scroll
-DocumentReady=function(){ document.querySelectorAll('.fade-in').forEach(el=> el.classList.add('visible')); };
-if (document.readyState !== 'loading') { DocumentReady(); } else { document.addEventListener('DOMContentLoaded', DocumentReady); }
-
-    const form = document.getElementById('rsvpForm');
-    const success = document.getElementById('success');
-    const scriptURL = 'https://script.google.com/macros/s/AKfycbzhEyX_7v2nN7f4Sp_8oLXFO0ZtfJoP9DaYZlge_URySBQ0g2eyRX3ea5v3X07FRXMM/exec';
-    form.addEventListener('submit', async (e)=>{
-      e.preventDefault();
-      const name = (document.getElementById('name').value || '').trim();
-      const attendance = document.getElementById('attendance').value;
-      if(!name || !attendance){ alert('이름과 참석 여부를 입력해주세요.'); return; }
-      try{
-        const params = new URLSearchParams();
-      params.append('name', name);
-      params.append('attendance', attendance);
-
-      const res = await fetch(scriptURL, {
-        method: 'POST',
-        body: params
-      });
-        if(!res.ok) throw new Error('submit error');
-        success.classList.add('show'); form.reset(); success.scrollIntoView({behavior:'smooth', block:'center'});
-      }catch(err){ alert('제출에 실패했습니다. 잠시 후 다시 시도해주세요.'); console.error(err); }
-    });
+    // 페이드인 트리거
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.fade-in').forEach(el => io.observe(el));
+  
+    // Google Forms 제출 후 메시지
+    function afterSubmit(){
+      document.getElementById('success').classList.add('show');
+    }
   </script>
+
 </body>
 </html>
