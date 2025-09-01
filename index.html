@@ -6,30 +6,10 @@
   <meta name="theme-color" content="#fffdf7" />
   <title>이현섭 김수민 혼인서약식</title>
 
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Reenie+Beanie&family=Caveat:wght@700&family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
-
   <style>
-    @font-face {
-      font-family: 'MapoPeacefullA';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoPeacefullA.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-    @font-face {
-      font-family: 'Bandali';
-      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KNPSBandali-Regular00.woff') format('woff');
-      font-weight: normal;
-      font-style: normal;
-      font-display: swap;
-    }
-
     :root {
       --cream: #fffdf7;
       --brown: #5e3316;
-      --gold:  #ccb189;
-      --accent: #e3907f;
       --card-max: 420px;
     }
 
@@ -45,34 +25,15 @@
     .paper::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06; background-image: radial-gradient(rgba(0,0,0,.18) 1px, transparent 1.5px); background-size: 6px 6px; }
 
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-.names-english.fade-in { opacity: 0; transform: rotate(-4deg) translateY(24px); }
-.names-english.fade-in.visible { opacity: 1; transform: rotate(-4deg) translateY(0); }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* Screen 1 */
-    .cover { text-align: center; position: relative; }
-    .names-english { line-height: .9; margin: 0 0 -22px; transform: rotate(-4deg); position: relative; z-index: 2; }
-    .names-english .line { display:block; font-family: 'Reenie Beanie', cursive; font-size: clamp(92px, 20vw, 136px); color: var(--brown); letter-spacing: .5px; font-weight:400; }
-    .names-english .amp { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(34px, 6vw, 54px); color: var(--brown); margin: 4px 0; display:block; }
-
-    .photo-wrap { width: 100%; max-width: var(--card-max); margin: 0 auto 8px; position: relative; z-index: 1; }
-    .photo { width: 100%; background: var(--cream); background-image: url('https://i.imgur.com/A7yQSHq.png'); background-size: contain; background-repeat:no-repeat; background-position: center; aspect-ratio: 5/6; max-height: 46vh; border-radius: 20px; }
-
-    .meta { text-align:center; color: var(--brown); margin-top: 2px; }
-    .meta .date, .meta .venue { font-family: 'MapoPeacefullA', sans-serif; font-size: clamp(15px, 4vw, 20px); }
-
-    .icon { position:absolute; pointer-events:none; filter: drop-shadow(0 1px 1px rgba(0,0,0,.15)); }
-    .icon-hlt { top: 6%; left: 6%; width: clamp(72px, 20vw, 120px); }
-    .icon-hrt { top: 10%; right: 8%; width: clamp(72px, 20vw, 120px); }
-    .icon-lt  { top: -4%; left: 6%; width: clamp(48px, 18vw, 92px); }
-    .icon-rt  { top: -4%; right: 6%; width: clamp(48px, 18vw, 92px); }
-    .icon-lb  { bottom: -4%; left: 6%; width: clamp(48px, 18vw, 92px); }
-    .icon-rb  { bottom: -4%; right: 6%; width: clamp(48px, 18vw, 92px); }
+    /* Screen 1 전체 이미지를 cover로 */
+    .cover-image { width: 100%; max-width: var(--card-max); display:block; height:auto; }
 
     /* Screen 2 */
     .invite-wrap { text-align:center; }
-    .heading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.6vw, 28px); color: var(--accent); margin: -6px 0 2px; font-weight:400; }
-    .subheading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.5vw, 28px); color: var(--accent); margin: 0 0 6px; }
+    .heading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.6vw, 28px); color: #e3907f; margin: -6px 0 2px; font-weight:400; }
+    .subheading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.5vw, 28px); color: #e3907f; margin: 0 0 6px; }
 
     .wave, .flower { margin: 4px auto; } .flower{ margin-top: 2px; }
     .wave img, .flower img { max-width: 160px; width: 55%; height: auto; display:block; margin: 0 auto; }
@@ -85,7 +46,7 @@
     .cal-grid { display:grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-top: 4px; }
     .cal-cell { text-align:center; padding: 6px 0; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; color: var(--brown); }
     .cal-cell.dim { opacity: .35; }
-    .cal-cell.emph { font-weight: 700; color: var(--accent); }
+    .cal-cell.emph { font-weight: 700; color: #e3907f; }
 
     .event-lines { margin: 14px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 14px; line-height: 1.6; font-weight:700; }
     .event-lines a { color: var(--brown); text-decoration: underline; }
@@ -100,52 +61,6 @@
     .success.show { display:block; }
 
     .hint { position:absolute; bottom: 10px; left: 50%; transform: translateX(-50%); opacity:.6; font-size: 11px; font-family:'Nanum Gothic',sans-serif; }
-  @media (max-height: 750px) {
-      .names-english .line { font-size: clamp(86px, 18vw, 120px); }
-      .photo { max-height: 42vh; }
-      .meta .date, .meta .venue { font-size: clamp(14px, 3.6vw, 18px); }
-      .paragraph { font-size: 13px; }
-      .calendar { max-width: 220px; }
-    }
-  /* ----- 1페이지: 사진 크롭 방지 + 텍스트 겹치기 유지 ----- */
-.photo{
-  width:100%;
-  background: transparent;
-  background-image:url('https://i.imgur.com/A7yQSHq.png');
-  background-repeat:no-repeat;
-  background-size:contain;      /* cover → contain : 크롭 방지 */
-  background-position:center;
-  aspect-ratio:5/6;
-  max-height:44vh;              /* 한 화면 수납 여유 */
-  border-radius:0;
-}
-
-/* Hyunsup / Soomin 굵기 해제 + 크기 유지 */
-.names-english .line{
-  font-weight:400;              /* 혹시 볼드였다면 해제 */
-  font-size:clamp(96px,22vw,138px);
-}
-
-/* 1페이지 아이콘 2배 확대 */
-.icon{ animation:none; }        /* 깜빡임/부유 제거(요청 반영) */
-.icon-hlt{ top:6%; left:6%;   width:clamp(72px,20vw,120px); }
-.icon-hrt{ top:10%; right:8%; width:clamp(72px,20vw,120px); }
-
-.icon-lt { top:-4%; left:6%;  width:clamp(48px,16vw,92px); }
-.icon-rt { top:-4%; right:6%; width:clamp(48px,16vw,92px); }
-.icon-lb { bottom:-4%; left:6%;  width:clamp(48px,16vw,92px); }
-.icon-rb { bottom:-4%; right:6%; width:clamp(48px,16vw,92px); }
-
-/* Soomin이 사진에 ‘겹쳐’ 보이도록 살짝 더 내려주고(필요시 수치 조절) */
-.names-english{ margin:0 0 -26px; transform:rotate(-4deg); }
-
-/* ----- 2페이지: 상단 여백 축소 + 버튼 아래 여백 + 읽기 쉬운 압축 ----- */
-#screen2 .card{ padding-top:.25rem; }          /* 윗마진 줄이기 */
-.event-lines{ font-weight:700; }               /* 이미 Bold였지만 확실히 */
-button{
-  margin-bottom:12px;                          /* 제출 버튼 아래 여백 추가 */
-}
-
   </style>
 </head>
 <body>
@@ -153,29 +68,7 @@ button{
     <!-- Screen 1 -->
     <section class="screen paper" id="screen1">
       <div class="card cover">
-        
-        
-        
-        
-        <img class="icon icon-hrt" src="icons/icon-hrt.png" alt="doodle near Hyunsup right-top"/>
-        <img class="icon icon-hlt" src="icons/icon-hlt.png" alt="doodle near Hyunsup left-top"/>
-
-        <h1 class="names-english fade-in" style="transition-delay:.05s">
-          <span class="line">Hyunsup</span>
-          <span class="amp">&</span>
-          <span class="line">Soomin</span>
-        </h1>
-        <div class="photo-wrap fade-in" style="transition-delay:.12s">
-          <div class="photo" role="img" aria-label="Hyunsup & Soomin photo"></div>
-          <img class="icon icon-lt" src="icons/icon-lt.png" alt="doodle left-top"/>
-          <img class="icon icon-rt" src="icons/icon-rt.png" alt="doodle right-top"/>
-          <img class="icon icon-lb" src="icons/icon-lb.png" alt="doodle left-bottom"/>
-          <img class="icon icon-rb" src="icons/icon-rb.png" alt="doodle right-bottom"/>
-        </div>
-        <div class="meta fade-in" style="transition-delay:.18s">
-          <div class="date">2025. 10. 04</div>
-          <div class="venue">MADANG RESTAURANT</div>
-        </div>
+        <img src="https://i.imgur.com/LiRiEif.png" alt="Hyunsup & Soomin cover" class="cover-image fade-in"/>
       </div>
       <div class="hint">스크롤하여 다음으로 ↓</div>
     </section>
