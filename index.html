@@ -45,16 +45,18 @@
     .paper::before { content: ""; position: absolute; inset: 0; pointer-events: none; opacity: .06; background-image: radial-gradient(rgba(0,0,0,.18) 1px, transparent 1.5px); background-size: 6px 6px; }
 
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
+.names-english.fade-in { opacity: 0; transform: rotate(-4deg) translateY(24px); }
+.names-english.fade-in.visible { opacity: 1; transform: rotate(-4deg) translateY(0); }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
     /* Screen 1 */
     .cover { text-align: center; position: relative; }
-    .names-english { line-height: .9; margin: 0; transform: rotate(-4deg); position: relative; z-index: 2; }
+    .names-english { line-height: .9; margin: 0 0 -22px; transform: rotate(-4deg); position: relative; z-index: 2; }
     .names-english .line { display:block; font-family: 'Reenie Beanie', cursive; font-size: clamp(88px, 16vw, 120px); color: var(--brown); letter-spacing: .5px; }
     .names-english .amp { font-family: 'Caveat', cursive; font-weight: 700; font-size: clamp(34px, 6vw, 54px); color: var(--brown); margin: 4px 0; display:block; }
 
-    .photo-wrap { width: 100%; max-width: var(--card-max); margin: 0 auto 6px; position: relative; z-index: 1; }
-    .photo { width: 100%; background: var(--cream); background-image: url('https://i.imgur.com/A7yQSHq.png'); background-size: cover; background-position: center; aspect-ratio: 9/13; border-radius: 20px; }
+    .photo-wrap { width: 100%; max-width: var(--card-max); margin: 0 auto 8px; position: relative; z-index: 1; }
+    .photo { width: 100%; background: var(--cream); background-image: url('https://i.imgur.com/A7yQSHq.png'); background-size: cover; background-position: center; aspect-ratio: 5/6; max-height: 46vh; border-radius: 20px; }
 
     .meta { text-align:center; color: var(--brown); margin-top: 2px; }
     .meta .date, .meta .venue { font-family: 'MapoPeacefullA', sans-serif; font-size: clamp(15px, 4vw, 20px); }
@@ -62,42 +64,49 @@
     .icon { position:absolute; pointer-events:none; filter: drop-shadow(0 1px 1px rgba(0,0,0,.15)); }
     .icon-hlt { top: 6%; left: 6%; width: clamp(28px, 10vw, 52px); }
     .icon-hrt { top: 10%; right: 8%; width: clamp(28px, 10vw, 52px); }
-    .icon-lt  { top: 46%; left: 8%; width: clamp(26px, 10vw, 50px); }
-    .icon-rt  { top: 48%; right: 6%; width: clamp(28px, 10vw, 52px); }
-    .icon-lb  { bottom: -4%; left: 8%; width: clamp(28px, 10vw, 52px); }
-    .icon-rb  { bottom: -4%; right: 8%; width: clamp(28px, 10vw, 52px); }
+    .icon-lt  { top: -4%; left: 6%; width: clamp(24px, 9vw, 46px); }
+    .icon-rt  { top: -4%; right: 6%; width: clamp(24px, 9vw, 46px); }
+    .icon-lb  { bottom: -4%; left: 6%; width: clamp(24px, 9vw, 46px); }
+    .icon-rb  { bottom: -4%; right: 6%; width: clamp(24px, 9vw, 46px); }
 
     /* Screen 2 */
     .invite-wrap { text-align:center; }
     .heading { font-family: 'Bandali', sans-serif; font-size: clamp(20px, 6vw, 30px); color: var(--accent); margin: 0 0 4px; }
     .subheading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.5vw, 28px); color: var(--accent); margin: 0 0 6px; }
 
-    .wave, .flower { margin: 6px auto; }
+    .wave, .flower { margin: 4px auto; } .flower{ margin-top: 2px; }
     .wave img, .flower img { max-width: 160px; width: 55%; height: auto; display:block; margin: 0 auto; }
 
     .paragraph { font-family: 'Nanum Gothic', sans-serif; color: var(--brown); line-height: 1.8; font-size: clamp(13px, 3.7vw, 16px); margin: 12px 0 22px; }
 
-    .calendar { width: 100%; max-width: 260px; margin: 18px auto; border-radius: 12px; padding: 10px; background: rgba(204,177,137,.14); }
+    .calendar { width: 100%; max-width: 240px; margin: 12px auto; border-radius: 12px; padding: 8px; background: rgba(204,177,137,.14); }
     .cal-head { display:grid; grid-template-columns: repeat(7,1fr); gap: 5px; text-align:center; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); }
-    .cal-head div { font-size: 11px; }
-    .cal-grid { display:grid; grid-template-columns: repeat(7,1fr); gap: 5px; margin-top: 5px; }
+    .cal-head div { font-size: 10px; }
+    .cal-grid { display:grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-top: 4px; }
     .cal-cell { text-align:center; padding: 6px 0; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; color: var(--brown); }
     .cal-cell.dim { opacity: .35; }
     .cal-cell.emph { font-weight: 700; color: var(--accent); }
 
-    .event-lines { margin: 24px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 15px; line-height: 1.7; font-weight:700; }
+    .event-lines { margin: 14px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 14px; line-height: 1.6; font-weight:700; }
     .event-lines a { color: var(--brown); text-decoration: underline; }
 
-    form { width: 100%; max-width: 340px; margin: 0 auto 10px; }
+    form { width: 100%; max-width: 320px; margin: 6px auto 6px; }
     .field { margin-bottom: 8px; text-align: left; }
     .label { font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 13px; margin: 4px 0; }
-    input, select { width: 100%; border: 1px solid #efebe6; border-radius: 12px; padding: 10px 12px; font-size: 14px; font-family: 'Nanum Gothic', sans-serif; box-sizing: border-box; }
-    button { width: 100%; margin-top: 4px; padding: 10px 12px; border-radius: 12px; border: none; background: var(--brown); color: #fff; font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 14px; cursor: pointer; }
+    input, select { width: 100%; border: 1px solid #efebe6; border-radius: 10px; padding: 8px 10px; font-size: 13px; font-family: 'Nanum Gothic', sans-serif; box-sizing: border-box; }
+    button { width: 100%; margin-top: 6px; padding: 9px 12px; border-radius: 10px; border: none; background: var(--brown); color: #fff; font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; }
 
     .success { display:none; text-align:center; color:#2e7d32; font-weight:700; margin-top:10px; }
     .success.show { display:block; }
 
     .hint { position:absolute; bottom: 10px; left: 50%; transform: translateX(-50%); opacity:.6; font-size: 11px; font-family:'Nanum Gothic',sans-serif; }
+  @media (max-height: 750px) {
+      .names-english .line { font-size: clamp(86px, 18vw, 120px); }
+      .photo { max-height: 42vh; }
+      .meta .date, .meta .venue { font-size: clamp(14px, 3.6vw, 18px); }
+      .paragraph { font-size: 13px; }
+      .calendar { max-width: 220px; }
+    }
   </style>
 </head>
 <body>
@@ -105,10 +114,10 @@
     <!-- Screen 1 -->
     <section class="screen paper" id="screen1">
       <div class="card cover">
-        <img class="icon icon-rb" src="icons/icon-rb.png" alt="doodle right-bottom"/>
-        <img class="icon icon-lb" src="icons/icon-lb.png" alt="doodle left-bottom"/>
-        <img class="icon icon-lt" src="icons/icon-lt.png" alt="doodle left-top"/>
-        <img class="icon icon-rt" src="icons/icon-rt.png" alt="doodle right-top"/>
+        
+        
+        
+        
         <img class="icon icon-hrt" src="icons/icon-hrt.png" alt="doodle near Hyunsup right-top"/>
         <img class="icon icon-hlt" src="icons/icon-hlt.png" alt="doodle near Hyunsup left-top"/>
 
@@ -119,6 +128,10 @@
         </h1>
         <div class="photo-wrap fade-in" style="transition-delay:.12s">
           <div class="photo" role="img" aria-label="Hyunsup & Soomin photo"></div>
+          <img class="icon icon-lt" src="icons/icon-lt.png" alt="doodle left-top"/>
+          <img class="icon icon-rt" src="icons/icon-rt.png" alt="doodle right-top"/>
+          <img class="icon icon-lb" src="icons/icon-lb.png" alt="doodle left-bottom"/>
+          <img class="icon icon-rb" src="icons/icon-rb.png" alt="doodle right-bottom"/>
         </div>
         <div class="meta fade-in" style="transition-delay:.18s">
           <div class="date">2025. 10. 04</div>
