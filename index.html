@@ -4,17 +4,37 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#fffdf7" />
-  <title>이현섭 김수민 혼인서약식</title>
+  <title>이현섭 ♥ 김수민 혼인서약식</title>
+
+  <!-- Open Graph Meta for KakaoTalk, Facebook, etc. -->
+  <meta property="og:title" content="이현섭 ♥ 김수민 혼인서약식 초대장" />
+  <meta property="og:description" content="2025년 10월 4일 토요일 오후 5시 30분, Madang Restaurant" />
+  <meta property="og:image" content="https://i.imgur.com/2JxpzKm.png" />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://soominkim25-beep.github.io/wedding-rsvp/" />
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KNPSBandali-Regular00.woff" rel="stylesheet" as="font" type="font/woff" crossorigin>
 
   <style>
+    @font-face {
+      font-family: 'Bandali';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2201-2@1.0/KNPSBandali-Regular00.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+      font-display: swap;
+    }
+
     :root {
       --cream: #fffdf7;
       --brown: #5e3316;
+      --accent: #e3907f;
       --card-max: 420px;
     }
 
     html, body { height: 100%; margin: 0; padding: 0; background: var(--cream); color: var(--brown); }
-    body { overflow: hidden; }
+    body { overflow: hidden; font-family: 'Nanum Gothic', sans-serif; }
 
     .snap-wrapper { height: 100vh; overflow-y: auto; scroll-snap-type: y mandatory; -webkit-overflow-scrolling: touch; }
     section.screen { scroll-snap-align: start; min-height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative; }
@@ -27,40 +47,52 @@
     .fade-in { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
     .fade-in.visible { opacity: 1; transform: translateY(0); }
 
-    /* Screen 1 전체 이미지를 cover로 */
+    /* Screen 1 */
     .cover-image { width: 100%; max-width: var(--card-max); display:block; height:auto; }
 
     /* Screen 2 */
     .invite-wrap { text-align:center; }
-    .heading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.6vw, 28px); color: #e3907f; margin: -6px 0 2px; font-weight:400; }
-    .subheading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.5vw, 28px); color: #e3907f; margin: 0 0 6px; }
+    .heading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.6vw, 28px); color: var(--accent); margin: -2px 0 2px; font-weight:400; }
+    .subheading { font-family: 'Bandali', sans-serif; font-size: clamp(18px, 5.5vw, 28px); color: var(--accent); margin: 0 0 6px; }
 
-    .wave, .flower { margin: 4px auto; } .flower{ margin-top: 2px; }
-    .wave img, .flower img { max-width: 160px; width: 55%; height: auto; display:block; margin: 0 auto; }
+    .wave, .flower { margin: 4px auto; }
+    .wave img { max-width: 160px; width: 55%; height: auto; display:block; margin: 0 auto; }
+    .flower img { max-width: 80px; width: 26%; height: auto; display:block; margin: 0 auto; }
 
     .paragraph { font-family: 'Nanum Gothic', sans-serif; color: var(--brown); line-height: 1.8; font-size: clamp(13px, 3.7vw, 16px); margin: 12px 0 22px; }
 
-    .calendar { width: 100%; max-width: 240px; margin: 12px auto; border-radius: 12px; padding: 8px; background: rgba(204,177,137,.14); }
+    .calendar { width: 100%; max-width: 240px; margin: 18px auto 22px; border-radius: 12px; padding: 8px; background: rgba(204,177,137,.14); }
     .cal-head { display:grid; grid-template-columns: repeat(7,1fr); gap: 5px; text-align:center; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); }
     .cal-head div { font-size: 10px; }
     .cal-grid { display:grid; grid-template-columns: repeat(7,1fr); gap: 4px; margin-top: 4px; }
-    .cal-cell { text-align:center; padding: 6px 0; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; color: var(--brown); }
+    .cal-cell { text-align:center; padding: 6px 0; font-family: 'Nanum Gothic', sans-serif; font-size: 14px; color: var(--brown); position: relative; }
     .cal-cell.dim { opacity: .35; }
-    .cal-cell.emph { font-weight: 700; color: #e3907f; }
+    .cal-cell.emph { font-weight: 700; color: var(--cream); }
+    .cal-cell.emph::before {
+      content: "";
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 26px;
+      height: 26px;
+      background-color: var(--accent);
+      opacity: 0.35;
+      border-radius: 50%;
+      z-index: -1;
+    }
 
-    .event-lines { margin: 14px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 14px; line-height: 1.6; font-weight:700; }
+    .event-lines { margin: 18px 0; font-family: 'Nanum Gothic', sans-serif; color: var(--brown); font-size: 14px; line-height: 1.6; font-weight:700; }
     .event-lines a { color: var(--brown); text-decoration: underline; }
 
-    form { width: 100%; max-width: 320px; margin: 6px auto 6px; }
+    form { width: 100%; max-width: 320px; margin: 6px auto 28px; }
     .field { margin-bottom: 8px; text-align: left; }
     .label { font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 13px; margin: 4px 0; }
     input, select { width: 100%; border: 1px solid #efebe6; border-radius: 10px; padding: 8px 10px; font-size: 13px; font-family: 'Nanum Gothic', sans-serif; box-sizing: border-box; }
-    button { width: 100%; margin: 6px 0 14px; padding: 9px 12px; border-radius: 10px; border: none; background: var(--brown); color: #fff; font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; }
+    button { width: 100%; margin: 6px 0 28px; padding: 9px 12px; border-radius: 10px; border: none; background: var(--brown); color: #fff; font-family: 'Nanum Gothic', sans-serif; font-weight: 700; font-size: 13px; cursor: pointer; }
 
     .success { display:none; text-align:center; color:#2e7d32; font-weight:700; margin-top:10px; }
     .success.show { display:block; }
-
-    .hint { position:absolute; bottom: 10px; left: 50%; transform: translateX(-50%); opacity:.6; font-size: 11px; font-family:'Nanum Gothic',sans-serif; }
   </style>
 </head>
 <body>
@@ -68,9 +100,8 @@
     <!-- Screen 1 -->
     <section class="screen paper" id="screen1">
       <div class="card cover">
-        <img src="https://i.imgur.com/LiRiEif.png" alt="Hyunsup & Soomin cover" class="cover-image fade-in"/>
+        <img src="https://i.imgur.com/2JxpzKm.png" alt="Hyunsup & Soomin cover" class="cover-image fade-in"/>
       </div>
-      <div class="hint">스크롤하여 다음으로 ↓</div>
     </section>
 
     <!-- Screen 2 -->
