@@ -4,22 +4,14 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no" />
   <meta name="theme-color" content="#fffdf7" />
-  <title>이현섭 ♥ 김수민 혼인서약식 초대장</title>
+  <title>혼인서약식 초대장</title>
 
-  <!-- Open Graph for KakaoTalk -->
+  <!-- Open Graph Meta for KakaoTalk, Facebook, etc. -->
   <meta property="og:title" content="이현섭 ♥ 김수민 혼인서약식 초대장" />
   <meta property="og:description" content="2025년 10월 4일 토요일 오후 5시 30분, Madang Restaurant" />
+  <meta property="og:image" content="https://i.imgur.com/2JxpzKm.png" />
   <meta property="og:type" content="website" />
   <meta property="og:url" content="https://soominkim25-beep.github.io/wedding-rsvp/" />
-  
-  <!-- 썸네일 이미지 -->
-  <meta property="og:image" content="https://i.imgur.com/2JxpzKm.png" />
-  <meta property="og:image:secure_url" content="https://i.imgur.com/2JxpzKm.png" />
-  <meta property="og:image:type" content="image/png" />
-  <meta property="og:image:width" content="1200" />
-  <meta property="og:image:height" content="630" />
-  <meta property="og:site_name" content="Wedding RSVP" />
-  <meta property="og:locale" content="ko_KR" />
 
   <!-- Google Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic:wght@400;700&display=swap" rel="stylesheet" />
@@ -56,7 +48,7 @@
     .fade-in.visible { opacity: 1; transform: none; }
 
     /* Screen 1 */
-    .cover-image { width: 100%; max-width: var(--card-max); display:block; height:auto; margin:0; }
+    .cover-image { width: 90%; max-width: var(--card-max); display:block; height:auto; margin: 0 auto; }
 
     /* Screen 2 */
     .invite-wrap { text-align:center; }
@@ -188,8 +180,7 @@ if (document.readyState !== 'loading') { DocumentReady(); } else { document.addE
       const attendance = document.getElementById('attendance').value;
       if(!name || !attendance){ alert('이름과 참석 여부를 입력해주세요.'); return; }
       try{
-        const params = new URLSearchParams(); params.append('name', name); params.append('attendance', attendance);
-        const res = await fetch(scriptURL, {method: 'POST', body: params});
+        const res = await fetch(scriptURL, { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({ name, attendance }) });
         if(!res.ok) throw new Error('submit error');
         success.classList.add('show'); form.reset(); success.scrollIntoView({behavior:'smooth', block:'center'});
       }catch(err){ alert('제출에 실패했습니다. 잠시 후 다시 시도해주세요.'); console.error(err); }
