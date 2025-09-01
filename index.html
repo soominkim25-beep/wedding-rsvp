@@ -139,6 +139,7 @@
         <!-- Google Form 연동 -->
         <form action="https://docs.google.com/forms/d/e/1FAIpQLSfcaAkOLbcPByZaSSvxFH0Xpei6p8RYn3ajLv79uVgqRoceFg/formResponse"
               method="POST"
+              accept-charset="utf-8"
               target="hidden_iframe"
               onsubmit="afterSubmit()"
               class="fade-in" style="transition-delay:.38s">
@@ -146,27 +147,29 @@
             <div class="label">이름</div>
             <input type="text" name="entry.1976039098" placeholder="이름" required />
           </div>
+        
           <div class="field">
             <div class="label">참석 여부</div>
             <select name="entry.645190049" required>
               <option value="">참석 여부 선택</option>
-              <option value="참석">참석합니다</option>
-              <option value="불참">불참합니다</option>
+              <option value="참석합니다">참석합니다</option>
+              <option value="불참합니다">불참합니다</option>
             </select>
           </div>
-
+        
+          <!-- Google Forms가 기대하는 숨은 필드 세트 (최소+호환 조합) -->
+          <input type="hidden" name="submit" value="Submit">
+          <input type="hidden" name="usp" value="pp_url">
           <input type="hidden" name="fvv" value="1">
           <input type="hidden" name="draftResponse" value="[]">
           <input type="hidden" name="pageHistory" value="0">
-          <!-- 필수: 제출 트리거 -->
-          <input type="hidden" name="submit" value="Submit">
-          <!-- 중요: fbzx 토큰 (아래 값 교체 필요) -->
-          <input type="hidden" name="fbzx" value="8541470068556763989">
-
+          <input type="hidden" name="fbzx" value="-6487901752054777423">
+        
           <button type="submit">제출하기</button>
           <div class="success" id="success">제출해주셔서 감사합니다!</div>
         </form>
         <iframe name="hidden_iframe" style="display:none"></iframe>
+
       </div>
     </section>
   </div>
