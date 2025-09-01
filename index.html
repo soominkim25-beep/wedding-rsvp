@@ -116,6 +116,10 @@
 
     .success { display:none; text-align:center; color:#2e7d32; font-weight:700; margin-top:10px; }
     .success.show { display:block; }
+
+    /* 2페이지 상단 여백 추가 */
+    #screen2 .card { padding-top: 24px; } /* 원하면 20~36px 사이로 조절 */
+
   </style>
 </head>
 <body>
@@ -187,9 +191,6 @@
           </div>
 
           <input type="hidden" name="submit" value="Submit">
-          <input type="hidden" name="fvv" value="1">
-          <input type="hidden" name="draftResponse" value="[]">
-          <input type="hidden" name="pageHistory" value="0">
 
           <button type="submit">제출하기</button>
           <div class="success" id="success">감사합니다!</div>
